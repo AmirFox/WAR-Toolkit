@@ -8,24 +8,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3029997401776005248, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
+      propertyPath: <IsAccesible>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029997401776005248, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
       propertyPath: <MovementCost>k__BackingField
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3812122771586600572, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.696446
       objectReference: {fileID: 0}
     - target: {fileID: 3812122771586600572, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.745283
       objectReference: {fileID: 0}
     - target: {fileID: 3812122771586600572, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
       propertyPath: m_Color.r
-      value: 0.54901963
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4978821166464050445, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
       propertyPath: m_Name
-      value: TestTile3
+      value: TestTile4
       objectReference: {fileID: 0}
     - target: {fileID: 5790395780239047151, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
       propertyPath: m_RootOrder

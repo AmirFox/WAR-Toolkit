@@ -33,7 +33,9 @@ namespace OpsEngine.Tilekit.Controllers
         /// </summary>
         public void CreateMap()
         {
-            _mapRoot = new GameObject("Map");
+            if(_mapRoot == null) { _mapRoot = new GameObject("Map"); }
+            else { ClearMap(); }
+            
             _tileMap.GenerateMap();
             foreach (ITile tile in _tileMap.GetAllTiles())
             {

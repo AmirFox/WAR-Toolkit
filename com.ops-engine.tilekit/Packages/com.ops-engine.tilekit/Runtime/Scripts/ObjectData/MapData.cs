@@ -29,16 +29,30 @@ namespace OpsEngine.Tilekit.ObjectData
         public int Height { get; private set; } = 10;
 
         [Header("Noise Generation")]
-        [field: SerializeField] private float _frequency = 1f;
-        [field: SerializeField] private int _dimensions = 3;
-        [field: SerializeField] private int _ocvtaves = 1;
-        [field: SerializeField] private float _lacurnity = 2f;
-        [field: SerializeField] private float _persistence = 0.5f;
-        [field: SerializeField] private NoiseMethodType _noiseMethod;
+        [field: SerializeField] 
+        private float _frequency = 1f;
+        
+        [field: SerializeField]
+        [Range(1,3)] 
+        private int _dimensions = 3;
+        
+        [field: SerializeField]
+        [Range(1,8)] 
+        private int _ocvtaves = 1;
+        
+        [field: SerializeField]
+        [Range(1f,4f)] 
+        private float _lacurnity = 2f;
+
+        [field: SerializeField]
+        [Range(0f,1f)] 
+        private float _persistence = 0.5f;
+
+        [field: SerializeField] 
+        private NoiseMethodType _noiseMethod;
         #endregion
 
         #region PUBLIC METHODS
-
         /// <summary>
         /// Retrieve the tile at the given position.
         /// </summary>
