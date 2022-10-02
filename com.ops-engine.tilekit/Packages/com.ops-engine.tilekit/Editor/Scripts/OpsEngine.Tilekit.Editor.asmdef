@@ -1,0 +1,16 @@
+{
+    "name": "OpsEngine.Tilekit.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:93f6ce09746e80946a1e755d8814caef"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

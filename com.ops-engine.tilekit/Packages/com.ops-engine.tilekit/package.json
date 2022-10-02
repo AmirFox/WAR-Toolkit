@@ -1,0 +1,22 @@
+{
+    "name": "com.ops-engine.tilekit",
+    "version": "0.0.1",
+    "displayName": "Tilekit",
+    "description": "A basic library for map generation, tile highlighting and tile-based pathfinding",
+    "unity": "2021.3",
+    "unityRelease": "7f1",
+    "documentationUrl": "https://example.com/",
+    "changelogUrl": "https://example.com/changelog.html",
+    "licensesUrl": "https://example.com/licensing.html",
+    "dependencies": {},
+   "keywords": [
+      "tiles",
+      "pathfinding",
+      "map generation"
+    ],
+    "author": {
+      "name": "Amir Fox",
+      "email": "amir_fox@outlook.com",
+      "url": "https://www.unity3d.com"
+    }
+  }
