@@ -8,14 +8,14 @@ namespace OpsEngine.Tilekit.Core
 /// <summary>
 /// Finds shortest paths between two tiles using djikstras algorithm
 /// </summary>
-public class TilePathFinder<T> : ITilePathFinder<T> where T : ITile
+public class MovementPathfinder<T> : ITilePathFinder<T> where T : ITile
 	{	
 		#region PRIVATE MEMBERS
-		private ITileMap<T> _tileMap;
+		protected readonly ITileMap<T> _tileMap;
 		#endregion
 
 		#region CONSTRUCTOR
-		public TilePathFinder (ITileMap<T> tileMap) 
+		public MovementPathfinder (ITileMap<T> tileMap) 
 		{
 			_tileMap = tileMap;
 		}
@@ -56,7 +56,7 @@ public class TilePathFinder<T> : ITilePathFinder<T> where T : ITile
 					T neighbor = _tileMap.GetTile(neighborPosition);
 					if(neighbor == null) continue;
 
-					if (!neighbor.IsAccesible || neighbor.IsOccupied) continue;
+					if (!neighbor.IsAccesible) continue;
 
 					TilePath<T> newPath = new TilePath<T>(current);
 					newPath.AddTile(neighbor);

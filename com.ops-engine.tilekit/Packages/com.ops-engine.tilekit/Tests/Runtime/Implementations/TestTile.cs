@@ -13,7 +13,6 @@ namespace OpsEngine.Tilekit.PlayTests
         public bool IsAccesible { get; set; }
         public Vector2 Coordinates { get; set; }
         public Vector2[] Neighbors { get; set; } = new Vector2[4];
-        public bool IsOccupied { get; set; } = false;
         #endregion
 
         #region CTORS

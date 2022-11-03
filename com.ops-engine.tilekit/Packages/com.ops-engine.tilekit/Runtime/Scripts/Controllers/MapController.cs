@@ -15,8 +15,8 @@ namespace OpsEngine.Tilekit.Controllers
         [field: SerializeField] 
         private MapData _mapData;
         
-        private TileHighlighter<Tile> _tileHighlighter;
-        private TilePathFinder<Tile> _tilePathFinder;
+        private MovementHighlighter<Tile> _tileHighlighter;
+        private MovementPathfinder<Tile> _tilePathFinder;
         private ITileMap<Tile> _tileMap;
 
         private GameObject _mapRoot;
@@ -24,8 +24,8 @@ namespace OpsEngine.Tilekit.Controllers
         private void Awake()
         {
             _tileMap = new TileMap<Tile>(_mapData);
-            _tileHighlighter = new TileHighlighter<Tile>(_tileMap);
-            _tilePathFinder = new TilePathFinder<Tile>(_tileMap);
+            _tileHighlighter = new MovementHighlighter<Tile>(_tileMap);
+            _tilePathFinder = new MovementPathfinder<Tile>(_tileMap);
         }
 
         /// <summary>

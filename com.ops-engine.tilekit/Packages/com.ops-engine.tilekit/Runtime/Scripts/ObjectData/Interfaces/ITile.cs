@@ -26,10 +26,5 @@ namespace OpsEngine.Tilekit.ObjectData
         /// Whether the given tile is accessible or not.
         /// </summary>
         bool IsAccesible { get; }
-
-        /// <summary>
-        /// Whether the given tile is being occupied or not.
-        /// </summary>
-        bool IsOccupied { get; set; }
     }
 }

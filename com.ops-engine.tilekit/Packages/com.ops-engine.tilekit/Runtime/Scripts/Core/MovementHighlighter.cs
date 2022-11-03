@@ -7,14 +7,14 @@ namespace OpsEngine.Tilekit.Core
     /// <summary>
     /// Interface for a utility class used to highlight tiles on a map.
     /// </summary>
-    public class TileHighlighter<T> : ITileHighlighter<T> where T : ITile
+    public class MovementHighlighter<T> : ITileHighlighter<T> where T : ITile
     {
-        #region PRIVATE MEMBERS
-        private ITileMap<T> _tileMap;
+        #region PROTECTED FIELDS
+        protected readonly ITileMap<T> _tileMap;
         #endregion
 
         #region CTORS
-        public TileHighlighter(ITileMap<T> tileMap)
+        public MovementHighlighter(ITileMap<T> tileMap)
         {
             _tileMap = tileMap;
         }
@@ -56,7 +56,7 @@ namespace OpsEngine.Tilekit.Core
 
                     if (neighbor == null) continue;
 
-                    if (!neighbor.IsAccesible || neighbor.IsOccupied) continue;
+                    if (!neighbor.IsAccesible) continue;
 
                     TilePath<T> newPath = new TilePath<T>(current);
                     newPath.AddTile(neighbor);

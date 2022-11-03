@@ -11,25 +11,21 @@ namespace OpsEngine.Tilekit.ObjectData
         #region UI FIELDS
         [field: SerializeField] public double BaseMoveValue { get; private set; } = 1;
         [field: SerializeField] public bool IsAccesible { get; private set; } = true;
-        [field: SerializeField]
         #endregion
 
         public Vector2 Coordinates { get; private set; }
         public Vector2[] Neighbors { get; private set; } = new Vector2[4];
-        public bool IsOccupied { get; set; } = false;
-        public bool IsHighlighted { get; set; }
         #endregion
 
         #region PUBLIC METHODS
-        public void Initialize(int x, int y, bool isOccupied = false)
+        public void Initialize(int x, int y)
         {
-            this.Initialize(new Vector2(x, y), isOccupied);
+            this.Initialize(new Vector2(x, y));
         }
 
-        public void Initialize(Vector2 coord, bool isOccupied = false)
+        public void Initialize(Vector2 coord)
         {
             this.Coordinates = coord;
-            this.IsOccupied = isOccupied;
         }
         #endregion
     }

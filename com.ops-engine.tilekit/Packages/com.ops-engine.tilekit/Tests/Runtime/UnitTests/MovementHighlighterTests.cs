@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace OpsEngine.Tilekit.PlayTests
 {
-    public class TileHighlighterTests
+    public class MovementHighlighterTests
     {
         private IMapData<TestTile> _mapData;
         private ITileMap<TestTile> _tileMap;
@@ -36,7 +36,7 @@ namespace OpsEngine.Tilekit.PlayTests
         {
             //ARRANGE
             _tileMap.GenerateMap();
-            ITileHighlighter<TestTile> sut = new TileHighlighter<TestTile>(_tileMap);
+            ITileHighlighter<TestTile> sut = new MovementHighlighter<TestTile>(_tileMap);
 
             //ACT
             TestTile origin = _tileMap.GetTile(new Vector2(x, y));
@@ -65,38 +65,13 @@ namespace OpsEngine.Tilekit.PlayTests
         {
             //ARRANGE
             _tileMap.GenerateMap();
-            ITileHighlighter<TestTile> sut = new TileHighlighter<TestTile>(_tileMap);
+            ITileHighlighter<TestTile> sut = new MovementHighlighter<TestTile>(_tileMap);
             int points = 5;
             Vector2 originPos = new Vector2(5, 5);
 
             //ACT
             TestTile origin = _tileMap.GetTile(originPos);
             _tileMap.GetTile(new Vector2(6, 6)).IsAccesible = false;
-            List<TestTile> highlightArea = sut.FindHighlight(origin, points);
-
-            //ASSERT
-            Assert.IsNotEmpty(highlightArea);
-
-            int expectedAreaSize = CalcBaseHighlightAreaSize(points) - 2;
-            Assert.AreEqual(expectedAreaSize, highlightArea.Count); //CHECK HIGHLIGHTED AREA IS OF EXPECTED SIZE
-
-            List<Vector2> highlightedPositions = highlightArea.Select(x => x.Coordinates).ToList();
-            bool actual = highlightedPositions.Contains(new Vector2(6, 6));
-            Assert.IsFalse(actual);
-        }
-
-        [Test]
-        public void CheckOccupiedTilesNotHighlighted()
-        {
-            //ARRANGE
-            _tileMap.GenerateMap();
-            ITileHighlighter<TestTile> sut = new TileHighlighter<TestTile>(_tileMap);
-            int points = 5;
-
-            //ACT
-            _tileMap.GetTile(new Vector2(6, 6)).IsOccupied = true;
-
-            TestTile origin = _tileMap.GetTile(new Vector2(5, 5));
             List<TestTile> highlightArea = sut.FindHighlight(origin, points);
 
             //ASSERT
