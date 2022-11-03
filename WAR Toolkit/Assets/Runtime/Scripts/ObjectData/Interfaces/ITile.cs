@@ -26,5 +26,11 @@ namespace WarToolkit.ObjectData
         /// Whether the given tile is accessible or not.
         /// </summary>
         bool IsAccesible { get; }
+
+        /// <summary>
+        /// Modifier for a unit's defence value on tile.
+        /// </summary>
+        /// <value></value>
+        double BaseDefenceModifier { get; }
     }
 }

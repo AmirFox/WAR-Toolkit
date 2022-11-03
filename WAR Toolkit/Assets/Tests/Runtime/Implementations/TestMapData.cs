@@ -27,7 +27,7 @@ namespace WarToolkit.PlayTests
         {
             if (_maxTileHeight == 0) throw new System.ArgumentOutOfRangeException(nameof(_maxTileHeight));
 
-            if (_maxTileHeight == 1) return new TestTile(x, y, _maxTileHeight, true);
+            if (_maxTileHeight == 1) return new TestTile(x, y, _maxTileHeight, 0.0, true);
 
             float perlinValue = GenerateNoise(x, y);
             var clamped = Mathf.Clamp(perlinValue, 0f, 1f);
@@ -35,7 +35,7 @@ namespace WarToolkit.PlayTests
             if (height >= _maxTileHeight)
                 height = _maxTileHeight;
 
-            return new TestTile(x, y, height, height == 0);
+            return new TestTile(x, y, height, 0.0, height == 0);
         }
         #endregion
 

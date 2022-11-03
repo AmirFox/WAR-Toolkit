@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: <BaseMoveValue>k__BackingField
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3029997401776005248, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
+      propertyPath: <BaseDefenceModifier>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3812122771586600572, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
       propertyPath: m_Color.b
       value: 0

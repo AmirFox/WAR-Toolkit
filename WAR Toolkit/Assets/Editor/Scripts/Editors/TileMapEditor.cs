@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using WarToolkit.Tilekit.Controllers;
-using WarToolkit.Tilekit.ObjectData;
+using WarToolkit.Controllers;
+using WarToolkit.ObjectData;
 using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
-namespace WarToolkit.Tilekit.Editors
+namespace WarToolkit.Editors
 {
     /// <summary>
     /// Custom inspector for generating and querying tile maps.
@@ -16,11 +16,8 @@ namespace WarToolkit.Tilekit.Editors
         #region PRIVATE FIELDS
         private int lastHighightPoints;
         private Vector2 lastHighlightOrigin;
-
         private Vector2 lastPathFindingOrigin;
-
         private Vector2 lastPathFindingTarget;
-
         private bool showMapControls = true;
         private bool showHighlighterControls = false;
         private bool showPathFindingControls = false;
