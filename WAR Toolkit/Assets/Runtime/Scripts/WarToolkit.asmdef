@@ -1,9 +1,7 @@
 {
-    "name": "OpsEngine.Tilekit.Editor",
+    "name": "WarToolkit",
     "rootNamespace": "",
-    "references": [
-        "GUID:93f6ce09746e80946a1e755d8814caef"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

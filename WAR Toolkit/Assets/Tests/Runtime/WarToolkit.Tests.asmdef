@@ -1,10 +1,10 @@
 {
-    "name": "OpsEngine.Tilekit.Tests",
+    "name": "WarToolkit.Tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "OpsEngine.Tilekit"
+        "WarToolkit"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
