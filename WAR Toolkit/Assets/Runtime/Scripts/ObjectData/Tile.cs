@@ -10,6 +10,7 @@ namespace WarToolkit.ObjectData
         #region PUBLIC FIELDS
         #region UI FIELDS
         [field: SerializeField] public double BaseMoveValue { get; private set; } = 1;
+        [field: SerializeField] public double BaseDefenceModifier { get; private set; } = 0;
         [field: SerializeField] public bool IsAccesible { get; private set; } = true;
         #endregion
 
