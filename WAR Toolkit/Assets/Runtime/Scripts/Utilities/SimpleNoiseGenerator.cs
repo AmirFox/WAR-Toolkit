@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OpsEngine.Tilekit.Utilities
+namespace WarToolkit.Utilities
 {
     /// <summary>
     /// Generates noise using the Unity perlin noise math function.

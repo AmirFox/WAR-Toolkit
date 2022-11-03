@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OpsEngine.Tilekit.ObjectData
+namespace WarToolkit.ObjectData
 {
 	/// <summary>
 	/// Core class used to generated and store map of tiles.

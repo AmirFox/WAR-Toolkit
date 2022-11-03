@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using OpsEngine.Tilekit.Utilities;
+using WarToolkit.Utilities;
 using UnityEngine;
 
-namespace OpsEngine.Tilekit.ObjectData
+namespace WarToolkit.ObjectData
 {
     [CreateAssetMenu(fileName = "Map Data", menuName = "Custom Assets/Map Data")]
     /// <summary>

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OpsEngine.Tilekit.ObjectData
+namespace WarToolkit.ObjectData
 {
     /// <summary>
     /// A basic implementation of tile properties on a MonoBehaviour.

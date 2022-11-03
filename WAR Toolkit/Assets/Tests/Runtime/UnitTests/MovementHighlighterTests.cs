@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using OpsEngine.Tilekit.Core;
-using OpsEngine.Tilekit.ObjectData;
+using WarToolkit.Core;
+using WarToolkit.ObjectData;
 using UnityEngine;
 
-namespace OpsEngine.Tilekit.PlayTests
+namespace WarToolkit.PlayTests
 {
     public class MovementHighlighterTests
     {

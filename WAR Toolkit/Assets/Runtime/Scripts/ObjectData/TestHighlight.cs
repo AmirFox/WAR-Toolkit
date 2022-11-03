@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OpsEngine.Tilekit.ObjectData
+namespace WarToolkit.ObjectData
 {
     /// <summary>
     /// Test highlighter implementation for coloring sprite renderer on tile.

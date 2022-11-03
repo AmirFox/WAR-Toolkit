@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace OpsEngine.Tilekit.Utilities
+namespace WarToolkit.Utilities
 {
     public delegate float NoiseMethod(Vector3 point, float frequency);
 

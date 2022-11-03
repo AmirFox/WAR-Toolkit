@@ -1,4 +1,4 @@
-namespace OpsEngine.Tilekit.ObjectData
+namespace WarToolkit.ObjectData
 {
     /// <summary>
     /// Interface defining static map data used to generate tile map levels.

@@ -1,7 +1,7 @@
-using OpsEngine.Tilekit.ObjectData;
+using WarToolkit.ObjectData;
 using UnityEngine;
 
-namespace OpsEngine.Tilekit.PlayTests
+namespace WarToolkit.PlayTests
 {
     /// <summary>
     /// A test implementation of a tile with public accessor fields.

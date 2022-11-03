@@ -1,7 +1,7 @@
-using OpsEngine.Tilekit.ObjectData;
+using WarToolkit.ObjectData;
 using UnityEngine;
 
-namespace OpsEngine.Tilekit.PlayTests
+namespace WarToolkit.PlayTests
 {
     public class TestMapData : IMapData<TestTile>
     {

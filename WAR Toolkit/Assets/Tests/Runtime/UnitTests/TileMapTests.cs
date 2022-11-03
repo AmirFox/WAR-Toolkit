@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using OpsEngine.Tilekit.ObjectData;
-using OpsEngine.Tilekit.Utilities;
+using WarToolkit.ObjectData;
+using WarToolkit.Utilities;
 using UnityEngine;
 
-namespace OpsEngine.Tilekit.PlayTests
+namespace WarToolkit.PlayTests
 {
     public class TileMapTests
     {

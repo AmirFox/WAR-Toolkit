@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using OpsEngine.Tilekit.ObjectData;
-using OpsEngine.Tilekit.Core;
+using WarToolkit.ObjectData;
+using WarToolkit.Core;
 using UnityEngine;
 
-namespace OpsEngine.Tilekit.Controllers
+namespace WarToolkit.Controllers
 {
     /// <summary>
     /// Unity component wrapping functionality for creating maps, pathfinding and path highlighting

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using OpsEngine.Tilekit.ObjectData;
+using WarToolkit.ObjectData;
 
-namespace OpsEngine.Tilekit.Core
+namespace WarToolkit.Core
 {
 	/// <summary>
 	/// Interface higlighting tiles on a map.

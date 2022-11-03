@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using OpsEngine.Tilekit.Controllers;
-using OpsEngine.Tilekit.ObjectData;
+using WarToolkit.Tilekit.Controllers;
+using WarToolkit.Tilekit.ObjectData;
 using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
-namespace OpsEngine.Tilekit.Editors
+namespace WarToolkit.Tilekit.Editors
 {
     /// <summary>
     /// Custom inspector for generating and querying tile maps.

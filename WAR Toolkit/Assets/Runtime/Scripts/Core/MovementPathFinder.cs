@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using OpsEngine.Tilekit.Core;
-using OpsEngine.Tilekit.ObjectData;
+using WarToolkit.Core;
+using WarToolkit.ObjectData;
 
-namespace OpsEngine.Tilekit.Core
+namespace WarToolkit.Core
 {
 /// <summary>
 /// Finds shortest paths between two tiles using djikstras algorithm

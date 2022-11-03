@@ -1,4 +1,4 @@
-namespace OpsEngine.Tilekit.Utilities
+namespace WarToolkit.Utilities
 {
     /// <summary>
     /// Interface for generating noise using a random seed.

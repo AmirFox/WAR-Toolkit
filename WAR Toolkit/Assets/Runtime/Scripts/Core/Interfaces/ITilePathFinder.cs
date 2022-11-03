@@ -1,6 +1,6 @@
-using OpsEngine.Tilekit.ObjectData;
+using WarToolkit.ObjectData;
 
-namespace OpsEngine.Tilekit.Core
+namespace WarToolkit.Core
 {
 	/// <summary>
 	/// Finds shortest paths between two tiles.

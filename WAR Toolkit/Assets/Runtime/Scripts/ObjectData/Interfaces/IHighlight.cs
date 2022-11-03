@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OpsEngine.Tilekit.ObjectData
+namespace WarToolkit.ObjectData
 {
     /// <summary>
     /// Component interface for highlighting tiles.

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using OpsEngine.Tilekit.ObjectData;
+using WarToolkit.ObjectData;
 
-namespace OpsEngine.Tilekit.Core
+namespace WarToolkit.Core
 {
     /// <summary>
     /// Interface for a utility class used to highlight tiles on a map.
