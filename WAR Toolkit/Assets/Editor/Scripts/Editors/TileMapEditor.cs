@@ -16,11 +16,8 @@ namespace WarToolkit.Editors
         #region PRIVATE FIELDS
         private int lastHighightPoints;
         private Vector2 lastHighlightOrigin;
-
         private Vector2 lastPathFindingOrigin;
-
         private Vector2 lastPathFindingTarget;
-
         private bool showMapControls = true;
         private bool showHighlighterControls = false;
         private bool showPathFindingControls = false;
