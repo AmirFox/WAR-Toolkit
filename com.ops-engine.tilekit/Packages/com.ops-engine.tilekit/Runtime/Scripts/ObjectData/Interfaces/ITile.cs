@@ -20,7 +20,7 @@ namespace OpsEngine.Tilekit.ObjectData
         /// <summary>
         /// Point cost to move to tile.
         /// </summary>
-        double MovementCost { get; }
+        double BaseMoveValue { get; }
 
         /// <summary>
         /// Whether the given tile is accessible or not.

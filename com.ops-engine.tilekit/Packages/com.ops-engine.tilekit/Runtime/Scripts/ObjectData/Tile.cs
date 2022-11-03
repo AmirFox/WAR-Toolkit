@@ -9,8 +9,9 @@ namespace OpsEngine.Tilekit.ObjectData
     {
         #region PUBLIC FIELDS
         #region UI FIELDS
-        [field: SerializeField] public double MovementCost { get; private set; } = 1;
+        [field: SerializeField] public double BaseMoveValue { get; private set; } = 1;
         [field: SerializeField] public bool IsAccesible { get; private set; } = true;
+        [field: SerializeField]
         #endregion
 
         public Vector2 Coordinates { get; private set; }

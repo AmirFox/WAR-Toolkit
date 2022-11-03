@@ -17,7 +17,7 @@ MonoBehaviour:
   - {fileID: 6001246609701246569, guid: 01e5d9c0ed5fb704ca7e5350f2658943, type: 3}
   - {fileID: 7497972959269396182, guid: 09277cf64a68e02479f0efeac27ad58c, type: 3}
   - {fileID: 6603072817443816465, guid: 3ec7f47a0fdeafd4f9ba5bc36487a4c3, type: 3}
-  <Seed>k__BackingField: Test
+  <Seed>k__BackingField: test
   <Width>k__BackingField: 20
   <Height>k__BackingField: 20
   _frequency: 0.2

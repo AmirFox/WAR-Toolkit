@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: <MovementCost>k__BackingField
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3029997401776005248, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
+      propertyPath: <BaseMoveValue>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3812122771586600572, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -25,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4978821166464050445, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
       propertyPath: m_Name
-      value: TestTile1
+      value: TestTile2
       objectReference: {fileID: 0}
     - target: {fileID: 5790395780239047151, guid: 9abb8bde001966b42be4051ae82a091a, type: 3}
       propertyPath: m_RootOrder

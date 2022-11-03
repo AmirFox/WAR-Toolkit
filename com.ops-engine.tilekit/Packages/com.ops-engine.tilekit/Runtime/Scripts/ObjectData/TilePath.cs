@@ -43,7 +43,7 @@ namespace OpsEngine.Tilekit.ObjectData
 
         public void AddTile(T t)
         {
-            Cost += t.MovementCost;
+            Cost += t.BaseMoveValue;
 
             _tiles.Add(t);
             Last = t;

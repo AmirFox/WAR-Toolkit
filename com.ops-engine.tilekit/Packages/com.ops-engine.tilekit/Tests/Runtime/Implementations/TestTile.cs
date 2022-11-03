@@ -9,7 +9,7 @@ namespace OpsEngine.Tilekit.PlayTests
     public class TestTile : ITile
     {
         #region PUBLIC FIELDS
-        public double MovementCost { get; set; }
+        public double BaseMoveValue { get; set; }
         public bool IsAccesible { get; set; }
         public Vector2 Coordinates { get; set; }
         public Vector2[] Neighbors { get; set; } = new Vector2[4];
@@ -25,7 +25,7 @@ namespace OpsEngine.Tilekit.PlayTests
         {
             this.Coordinates = coord;
             this.IsAccesible = isAccesible;
-            this.MovementCost = movementCost;
+            this.BaseMoveValue = movementCost;
         }
         #endregion
     }
