@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using WarToolkit.ObjectData;
+using WarToolkit.Core.Enums;
 
 namespace WarToolkit.Core
 {
     /// <summary>
     /// Interface for a utility class used to highlight tiles on a map.
     /// </summary>
-    public class MovementHighlighter<T> : ITileHighlighter<T> where T : ITile
+    public class MovementHighlighter<T> : ITileQuery<T> where T : ITile
     {
         #region PROTECTED FIELDS
         protected readonly ITileMap<T> _tileMap;
@@ -21,7 +22,7 @@ namespace WarToolkit.Core
         #endregion
 
         #region PUBLIC METHODS
-        public virtual List<T> FindHighlight(T origin, int points, bool includeOrigin = false)
+        public virtual List<T> QueryRadius(T origin, int points, bool includeOrigin = false)
         {
             //open list of paths and closed list of tiles
             List<T> closed = new List<T>();

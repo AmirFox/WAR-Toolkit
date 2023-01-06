@@ -1,5 +1,6 @@
 using WarToolkit.ObjectData;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace WarToolkit.PlayTests
 {
@@ -8,6 +9,8 @@ namespace WarToolkit.PlayTests
         public int Width { get; private set; }
         public int Height { get; private set; }
         public string Seed { get; set; }
+        public List<Vector3> ResourcePoints{ get; private set; }
+        
         #region PRIVATE MEMBERS
         private int _maxTileHeight;
         #endregion

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using WarToolkit.Utilities;
 using UnityEngine;
+using WarToolkit.Core.Enums;
 
 namespace WarToolkit.ObjectData
 {

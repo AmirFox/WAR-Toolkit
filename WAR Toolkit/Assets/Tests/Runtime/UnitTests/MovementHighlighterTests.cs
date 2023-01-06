@@ -36,11 +36,11 @@ namespace WarToolkit.PlayTests
         {
             //ARRANGE
             _tileMap.GenerateMap();
-            ITileHighlighter<TestTile> sut = new MovementHighlighter<TestTile>(_tileMap);
+            ITileQuery<TestTile> sut = new MovementHighlighter<TestTile>(_tileMap);
 
             //ACT
             TestTile origin = _tileMap.GetTile(new Vector2(x, y));
-            List<TestTile> highlightArea = sut.FindHighlight(origin, points);
+            List<TestTile> highlightArea = sut.QueryRadius(origin, points);
 
             //ASSERT
             Assert.IsNotEmpty(highlightArea);
@@ -65,14 +65,14 @@ namespace WarToolkit.PlayTests
         {
             //ARRANGE
             _tileMap.GenerateMap();
-            ITileHighlighter<TestTile> sut = new MovementHighlighter<TestTile>(_tileMap);
+            ITileQuery<TestTile> sut = new MovementHighlighter<TestTile>(_tileMap);
             int points = 5;
             Vector2 originPos = new Vector2(5, 5);
 
             //ACT
             TestTile origin = _tileMap.GetTile(originPos);
             _tileMap.GetTile(new Vector2(6, 6)).IsAccesible = false;
-            List<TestTile> highlightArea = sut.FindHighlight(origin, points);
+            List<TestTile> highlightArea = sut.QueryRadius(origin, points);
 
             //ASSERT
             Assert.IsNotEmpty(highlightArea);

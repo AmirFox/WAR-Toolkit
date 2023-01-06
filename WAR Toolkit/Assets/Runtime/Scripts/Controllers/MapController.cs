@@ -11,6 +11,8 @@ namespace WarToolkit.Controllers
     /// </summary>
     public class MapController : MonoBehaviour
     {
+        public static MapController instance { get; private set; }
+
         [Tooltip("Static data defining properties of the map being generated.")]
         [field: SerializeField] 
         private MapData _mapData;
@@ -23,6 +25,7 @@ namespace WarToolkit.Controllers
 
         private void Awake()
         {
+            instance = this;
             _tileMap = new TileMap<Tile>(_mapData);
             _tileHighlighter = new MovementHighlighter<Tile>(_tileMap);
             _tilePathFinder = new MovementPathfinder<Tile>(_tileMap);
@@ -67,7 +70,7 @@ namespace WarToolkit.Controllers
         public IEnumerable<Tile> FindHighlight(Vector2 origin, int points)
         {
             Tile tile = _tileMap.GetTile(origin);
-            return _tileHighlighter.FindHighlight(tile, points);
+            return _tileHighlighter.QueryRadius(tile, points);
         }
 
         /// <summary>

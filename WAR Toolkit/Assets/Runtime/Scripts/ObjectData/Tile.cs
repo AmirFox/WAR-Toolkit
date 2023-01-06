@@ -16,6 +16,8 @@ namespace WarToolkit.ObjectData
 
         public Vector2 Coordinates { get; private set; }
         public Vector2[] Neighbors { get; private set; } = new Vector2[4];
+
+        public IUnit Occupier { get; set; }
         #endregion
 
         #region PUBLIC METHODS

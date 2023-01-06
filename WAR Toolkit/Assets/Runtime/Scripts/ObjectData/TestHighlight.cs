@@ -3,7 +3,7 @@ using UnityEngine;
 namespace WarToolkit.ObjectData
 {
     /// <summary>
-    /// Test highlighter implementation for coloring sprite renderer on tile.
+    /// Test highlighter implementation for coloring sprite renderer on an object.
     /// </summary>
     [RequireComponent(typeof(SpriteRenderer))]
     public class TestHighlight : MonoBehaviour, IHighlight

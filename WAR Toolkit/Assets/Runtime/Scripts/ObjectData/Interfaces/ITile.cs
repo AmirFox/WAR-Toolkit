@@ -32,5 +32,7 @@ namespace WarToolkit.ObjectData
         /// </summary>
         /// <value></value>
         double BaseDefenceModifier { get; }
+
+        IUnit Occupier { get; set; }
     }
 }
