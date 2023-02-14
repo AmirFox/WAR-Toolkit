@@ -14,6 +14,7 @@ namespace WarToolkit.PlayTests
         public bool IsAccesible { get; set; }
         public Vector2 Coordinates { get; set; }
         public Vector2[] Neighbors { get; set; } = new Vector2[4];
+        public IUnit Occupier {get;set;}
         #endregion
 
         #region CTORS
@@ -26,6 +27,11 @@ namespace WarToolkit.PlayTests
             this.Coordinates = coord;
             this.IsAccesible = isAccesible;
             this.BaseMoveValue = movementCost;
+        }
+
+        public void SetHighlight(bool highlight)
+        {
+            throw new System.NotImplementedException();
         }
         #endregion
     }

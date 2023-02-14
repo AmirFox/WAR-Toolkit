@@ -4,6 +4,7 @@ using NUnit.Framework;
 using WarToolkit.Core;
 using WarToolkit.ObjectData;
 using UnityEngine;
+using WarToolkit.Pathfinding;
 
 namespace WarToolkit.PlayTests
 {

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using WarToolkit.Controllers;
+using WarToolkit.Managers;
 using WarToolkit.ObjectData;
 using UnityEditor;
 using UnityEngine;
@@ -10,7 +10,7 @@ namespace WarToolkit.Editors
     /// <summary>
     /// Custom inspector for generating and querying tile maps.
     /// </summary>
-    [CustomEditor(typeof(MapController))]
+    [CustomEditor(typeof(MapManager))]
     public class TileMapEditor : Editor
     {
         #region PRIVATE FIELDS
@@ -25,7 +25,7 @@ namespace WarToolkit.Editors
         #endregion
 
         #region PRIVATE METHODS
-        private void DrawMapInspector(MapController target)
+        private void DrawMapInspector(MapManager target)
         {
             if (GUILayout.Button("Generate Map"))
             {
@@ -45,7 +45,7 @@ namespace WarToolkit.Editors
             }
         }
 
-        private void ClearColor(MapController target)
+        private void ClearColor(MapManager target)
         {
             foreach (Tile tile in target.GetAll())
             {
@@ -53,7 +53,7 @@ namespace WarToolkit.Editors
             }
         }
 
-        private void DrawHighlightInspector(MapController target)
+        private void DrawHighlightInspector(MapManager target)
         {
             lastHighlightOrigin = EditorGUILayout.Vector2Field("Origin", lastHighlightOrigin);
             lastHighightPoints = EditorGUILayout.IntField("Points", lastHighightPoints);
@@ -64,7 +64,7 @@ namespace WarToolkit.Editors
             }
         }
 
-        private void DrawPathFindingInspector(MapController target)
+        private void DrawPathFindingInspector(MapManager target)
         {
             lastPathFindingOrigin = EditorGUILayout.Vector2Field("Origin", lastPathFindingOrigin);
             lastPathFindingTarget = EditorGUILayout.Vector2Field("Target", lastPathFindingTarget);
@@ -86,25 +86,25 @@ namespace WarToolkit.Editors
             showMapControls = EditorGUILayout.Foldout(showMapControls, "Map Controls");
             if (showMapControls)
             {
-                DrawMapInspector(target as MapController);
+                DrawMapInspector(target as MapManager);
             }
 
             showHighlighterControls = EditorGUILayout.Foldout(showHighlighterControls, "Highighter Controls");
             if (showHighlighterControls)
             {
-                DrawHighlightInspector(target as MapController);
+                DrawHighlightInspector(target as MapManager);
             }
 
 
             showPathFindingControls = EditorGUILayout.Foldout(showPathFindingControls, "Pathfinding");
             if (showPathFindingControls)
             {
-                DrawPathFindingInspector(target as MapController);
+                DrawPathFindingInspector(target as MapManager);
             }
 
             if (GUILayout.Button("Clear Highlights"))
             {
-                ClearColor(target as MapController);
+                ClearColor(target as MapManager);
 
                 _result = new List<Tile>();
             }

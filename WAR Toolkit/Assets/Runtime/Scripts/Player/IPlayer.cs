@@ -1,0 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace WarToolkit.ObjectData
+{
+    public interface IPlayer
+    {
+        int PlayerIndex { get; }
+        int Resources { get; }
+        bool IsEliminated { get; }
+    }
+}
