@@ -8,7 +8,7 @@ namespace WarToolkit.ObjectData
 	/// Core class used to generated and store map of tiles.
 	/// </summary>
 	/// <typeparam name="T">Type of tile to use in map.</typeparam>
-    public class TileMap<T> : ITileMap<T> where T : ITile
+    public class TileMap<T> : IMapController<T> where T : ITile
     {
         #region PRIVATE MEMBERS
         private IMapData<T> _mapData;

@@ -26,7 +26,7 @@ namespace WarToolkit.PlayTests
         public void CanGenerateMap()
         {
             //ARRANGE
-            ITileMap<TestTile> sut = new TileMap<TestTile>(_mapData);
+            IMapController<TestTile> sut = new TileMap<TestTile>(_mapData);
 
             //ACT
             sut.GenerateMap();
@@ -48,7 +48,7 @@ namespace WarToolkit.PlayTests
         public void CanFindExistingTile(int x, int y)
         {
             //ARRANGE
-            ITileMap<TestTile> sut = new TileMap<TestTile>(_mapData);
+            IMapController<TestTile> sut = new TileMap<TestTile>(_mapData);
 
             //ACT
             sut.GenerateMap();
@@ -64,7 +64,7 @@ namespace WarToolkit.PlayTests
         public void CannotFindTileOutOfRange(int x, int y)
         {
             //ARRANGE
-            ITileMap<TestTile> sut = new TileMap<TestTile>(_mapData);
+            IMapController<TestTile> sut = new TileMap<TestTile>(_mapData);
 
             //ACT
             sut.GenerateMap();
@@ -80,7 +80,7 @@ namespace WarToolkit.PlayTests
         public void CannotFindTileBeforeGeneratingMap(int x, int y)
         {
             //ARRANGE
-            ITileMap<TestTile> sut = new TileMap<TestTile>(_mapData);
+            IMapController<TestTile> sut = new TileMap<TestTile>(_mapData);
 
             //ASSERT
             Vector2 position = new Vector2(x, y);

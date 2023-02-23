@@ -11,11 +11,11 @@ namespace WarToolkit.Pathfinding
 public class MovementPathfinder<T> : ITilePathFinder<T> where T : ITile
 	{	
 		#region PRIVATE MEMBERS
-		protected readonly ITileMap<T> _tileMap;
+		protected readonly IMapController<T> _tileMap;
 		#endregion
 
 		#region CONSTRUCTOR
-		public MovementPathfinder (ITileMap<T> tileMap) 
+		public MovementPathfinder (IMapController<T> tileMap) 
 		{
 			_tileMap = tileMap;
 		}

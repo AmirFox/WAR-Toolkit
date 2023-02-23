@@ -11,11 +11,11 @@ namespace WarToolkit.Pathfinding
     public class MovementHighlighter<T> : ITileQuery<T> where T : ITile
     {
         #region PROTECTED FIELDS
-        protected readonly ITileMap<T> _tileMap;
+        protected readonly IMapController<T> _tileMap;
         #endregion
 
         #region CTORS
-        public MovementHighlighter(ITileMap<T> tileMap)
+        public MovementHighlighter(IMapController<T> tileMap)
         {
             _tileMap = tileMap;
         }

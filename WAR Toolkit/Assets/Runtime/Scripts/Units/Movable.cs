@@ -4,14 +4,14 @@ using UnityEngine;
 using WarToolkit.Core.EventArgs;
 using WarToolkit.ObjectData;
 
-public class Movable : MonoBehaviour, IMovable<Tile>
+public class Movable : MonoBehaviour, IMovable<DataTile>
 {
-    public Tile CurrentTile { get; }
+    public DataTile CurrentTile { get; }
     public bool HasMoved { get; private set; }
 
     public int BaseMovementValue { get; }
 
-    public void MoveToTile(Tile tile)
+    public void MoveToTile(DataTile tile)
     {
         //move to the given tile
         HasMoved = true;

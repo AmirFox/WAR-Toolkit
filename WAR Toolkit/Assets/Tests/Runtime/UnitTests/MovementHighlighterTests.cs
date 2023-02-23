@@ -11,7 +11,7 @@ namespace WarToolkit.PlayTests
     public class MovementHighlighterTests
     {
         private IMapData<TestTile> _mapData;
-        private ITileMap<TestTile> _tileMap;
+        private IMapController<TestTile> _tileMap;
         private Vector2[] _smallHighlightArea = { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(-1, 0), new Vector2(0, -1) };
         private Vector2[] _mediumHighlightArea = { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(-1, 0), new Vector2(0, -1) };
         private Vector2[] _largeHighlightArea = { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(-1, 0), new Vector2(0, -1) };

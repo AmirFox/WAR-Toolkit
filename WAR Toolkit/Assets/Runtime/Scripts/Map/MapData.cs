@@ -9,13 +9,13 @@ namespace WarToolkit.ObjectData
     /// <summary>
     /// Scriptable object representing static map data.
     /// </summary>
-    public class MapData : ScriptableObject, IMapData<Tile>, INoiseGenerator
+    public class MapData : ScriptableObject, IMapData<DataTile>, INoiseGenerator
     {
         #region UI FIELDS
         [Header("Map Configuration")]
         [Tooltip("Types of tile sorted by height.")]
         [field: SerializeField]
-        private List<Tile> _tileTypes;
+        private List<DataTile> _tileTypes;
 
         [Tooltip("Map generation seed for randomization.")]
         [field: SerializeField]
@@ -60,7 +60,7 @@ namespace WarToolkit.ObjectData
         /// <param name="x">X co-ordinate of tile</param>
         /// <param name="y">Y co-ordinate of tile</param>
         /// <returns>Returns the found tile or null.</returns>
-        public Tile GetTileData(int x, int y)
+        public DataTile GetTileData(int x, int y)
         {
             float perlinValue = GenerateNoise(x, y);
             var clamped = Mathf.Clamp(perlinValue, 0f, 1f);
@@ -69,12 +69,7 @@ namespace WarToolkit.ObjectData
             if (index >= _tileTypes.Count)
                 index = _tileTypes.Count - 1;
 
-            Tile tilePrefab = _tileTypes[index];
-            Tile tileInstance = Tile.Instantiate(tilePrefab, new Vector3(x, y), Quaternion.identity);
-            tileInstance.name = $"({x},{y})";
-            tileInstance.Initialize(x, y);
-
-            return tileInstance;
+            return _tileTypes[index];
         }
 
         public float GenerateNoise(float x, float y)
