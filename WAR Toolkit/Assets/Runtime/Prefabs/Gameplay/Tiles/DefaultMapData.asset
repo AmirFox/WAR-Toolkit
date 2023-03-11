@@ -18,7 +18,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b8cc1251114e9184a87dd5e0966883bd, type: 2}
   - {fileID: 11400000, guid: b966361b242e53f43b5da6413aa7d9cc, type: 2}
   - {fileID: 11400000, guid: 0fcf17c9a0445c143af3217337da9146, type: 2}
-  _seed: DefaultSeed
-  _scale: 20
-  <Width>k__BackingField: 256
-  <Height>k__BackingField: 256
+  <Seed>k__BackingField: test
+  <Width>k__BackingField: 100
+  <Height>k__BackingField: 100
+  _frequency: 0.1
+  _dimensions: 3
+  _ocvtaves: 6
+  _lacurnity: 1
+  _persistence: 0.5
+  _noiseMethod: 0
