@@ -32,8 +32,18 @@ public class MapController : MonoBehaviour, IMapController<DataTile>
     {
         if (Input.GetMouseButtonDown(0)) 
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+            Vector3 cameraPosition = Camera.main.transform.localPosition;
+            float mouseZ = Camera.main.WorldToScreenPoint(new Vector3(0,0,Input.mousePosition.z)).z;
+            Vector3 origin = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, mouseZ));
+
+            Vector3 direction = new Vector3(0,0,cameraPosition.z);
+            
+            if(Physics.Raycast(origin, direction, out RaycastHit _, 20))
+            {
+                Debug.DrawRay(origin, direction, Color.red, 15f);
+            }
+
+            var hit = Physics2D.Raycast(new Vector2(origin.x, origin.y), Vector2.up);
             if (hit.collider != null && hit.collider.gameObject == this._tileMap.gameObject) 
             {
                 Vector3 point = hit.point;
