@@ -2,7 +2,7 @@ using WarToolkit.Core.Enums;
 using WarToolkit.Core.EventArgs;
 using WarToolkit.ObjectData;
 
-public class DeploymentSelectionHandler<T_Tile, T_Deployable> : BaseSelectionHandler 
+public class DeploymentActionListener<T_Tile, T_Deployable> : PlayerActionListener 
     where T_Tile: ITile 
     where T_Deployable : IDeployable
 {
@@ -12,18 +12,18 @@ public class DeploymentSelectionHandler<T_Tile, T_Deployable> : BaseSelectionHan
 
     protected override Phase phase => Phase.DEPLOYMENT;
 
-    public DeploymentSelectionHandler(int playerIndex, IEventManager eventManager, T_Tile[] deploymentTiles) : base(playerIndex, eventManager)
+    public DeploymentActionListener(int playerIndex, IEventManager eventManager, T_Tile[] deploymentTiles) : base(playerIndex, eventManager)
     { 
         _deploymentTiles = deploymentTiles;
     }
 
-    protected override void AddListeners()
+    protected override void StartListening()
     {
         _eventManager.StartListening(Constants.EventNames.TILE_SELECTED, OnTileSelected);
         _eventManager.StartListening(Constants.EventNames.DEPLOYABLE_SELECTED, OnDeployableSelected);
     }
 
-    protected override void RemoveListeners()
+    protected override void StopListening()
     {
         _eventManager.StopListening(Constants.EventNames.DEPLOYABLE_SELECTED, OnDeployableSelected);
         _eventManager.StopListening(Constants.EventNames.TILE_SELECTED, OnTileSelected);

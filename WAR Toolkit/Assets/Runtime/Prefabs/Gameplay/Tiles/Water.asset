@@ -343,7 +343,8 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: -1, y: 0, z: 0}
     m_RuleTransform: 0
-  overlayTile: {fileID: 0}
-  <BaseMoveValue>k__BackingField: 1
+  OverlayTile: {fileID: 0}
+  <DisplayName>k__BackingField: Water
+  <BaseMoveValue>k__BackingField: 0
   <BaseDefenceModifier>k__BackingField: 0
   <IsAccesible>k__BackingField: 1

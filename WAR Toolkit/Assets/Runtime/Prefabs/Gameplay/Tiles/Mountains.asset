@@ -326,7 +326,8 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: 0, y: -1, z: 0}
     m_RuleTransform: 0
-  overlayTile: {fileID: 11400000, guid: 2b52a2411c083d34bb5529ae3e4df54a, type: 2}
-  <BaseMoveValue>k__BackingField: 1
-  <BaseDefenceModifier>k__BackingField: 0
+  OverlayTile: {fileID: 11400000, guid: 2b52a2411c083d34bb5529ae3e4df54a, type: 2}
+  <DisplayName>k__BackingField: Mountain
+  <BaseMoveValue>k__BackingField: 3
+  <BaseDefenceModifier>k__BackingField: 2
   <IsAccesible>k__BackingField: 1

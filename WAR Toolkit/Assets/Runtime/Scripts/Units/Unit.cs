@@ -5,12 +5,14 @@ using WarToolkit.Core.Enums;
 using WarToolkit.Core.EventArgs;
 using WarToolkit.Managers;
 using WarToolkit.ObjectData;
+using Zenject;
 
 namespace WarToolkit.ObjectData
 {
     public class Unit : MonoBehaviour, IUnit
     { 
-        private IEventManager _eventManager;
+        [Inject] private TurnManager _turnManager;
+        [Inject] private IEventManager _eventManager;
         private Movable _movableComponent;
         private Combatant _combatComponent;
 
@@ -28,15 +30,14 @@ namespace WarToolkit.ObjectData
         #endregion
 
         private void Awake() 
-        {
-            _eventManager = IEventManager.Instance;         
+        {        
             _movableComponent = GetComponent<Movable>();
             _combatComponent = GetComponent<Combatant>();
         }
 
         private void OnMouseDown() 
         {
-            switch(TurnManager.Instance.CurrentPhase)
+            switch(_turnManager.CurrentPhase)
             {
                 case Phase.MOVEMENT:
                     SelectionEventArgs<Movable> movableArgs = new SelectionEventArgs<Movable>(_movableComponent);

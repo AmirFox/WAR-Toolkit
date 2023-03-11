@@ -23,15 +23,15 @@ namespace WarToolkit.ObjectData
 
         [Tooltip("Width of map.")]
         [field: SerializeField]
-        public int Width { get; private set; } = 10;
+        public int Width { get; private set; } = 100;
 
         [Tooltip("Height of map.")]
         [field: SerializeField]
-        public int Height { get; private set; } = 10;
+        public int Height { get; private set; } = 100;
 
         [Header("Noise Generation")]
         [field: SerializeField] 
-        private float _frequency = 1f;
+        private float _frequency = 0.1f;
         
         [field: SerializeField]
         [Range(1,3)] 
@@ -39,11 +39,11 @@ namespace WarToolkit.ObjectData
         
         [field: SerializeField]
         [Range(1,8)] 
-        private int _ocvtaves = 1;
+        private int _ocvtaves = 6;
         
         [field: SerializeField]
         [Range(1f,4f)] 
-        private float _lacurnity = 2f;
+        private float _lacurnity = 1f;
 
         [field: SerializeField]
         [Range(0f,1f)] 
@@ -63,7 +63,7 @@ namespace WarToolkit.ObjectData
         public DataTile GetTileData(int x, int y)
         {
             float perlinValue = GenerateNoise(x, y);
-            var clamped = Mathf.Clamp(perlinValue, 0f, 1f);
+            var clamped = Mathf.Clamp01(perlinValue);
             var index = Mathf.FloorToInt(clamped * _tileTypes.Count);
 
             if (index >= _tileTypes.Count)
@@ -78,7 +78,7 @@ namespace WarToolkit.ObjectData
             Vector3 p = new Vector3(x, y, hash);
             NoiseMethod method = Noise.noiseMethods[(int)_noiseMethod][_dimensions - 1];
             float noiseSum = Noise.Sum(method, p, _frequency, _ocvtaves, _lacurnity, _persistence);
-            return Mathf.Clamp(noiseSum, 0f, 1f);
+            return noiseSum;
         }
         #endregion
     }

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eeea3b20eb4924f89b8ffd52d87b82, type: 3}
   m_Name: DefaultMapData
   m_EditorClassIdentifier: 
-  _tileTypes: []
-  <Seed>k__BackingField: 
-  <Width>k__BackingField: 10
-  <Height>k__BackingField: 10
-  _frequency: 1
-  _dimensions: 3
-  _ocvtaves: 1
-  _lacurnity: 2
-  _persistence: 0.5
-  _noiseMethod: 0
+  _tileTypes:
+  - {fileID: 11400000, guid: e1864a555e6657843abb051cee8ad831, type: 2}
+  - {fileID: 11400000, guid: b7c035ecc0a5e0c47bd5454980880b2a, type: 2}
+  - {fileID: 11400000, guid: b8cc1251114e9184a87dd5e0966883bd, type: 2}
+  - {fileID: 11400000, guid: b966361b242e53f43b5da6413aa7d9cc, type: 2}
+  - {fileID: 11400000, guid: 0fcf17c9a0445c143af3217337da9146, type: 2}
+  _seed: DefaultSeed
+  _scale: 20
+  <Width>k__BackingField: 256
+  <Height>k__BackingField: 256

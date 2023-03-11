@@ -5,27 +5,14 @@ using WarToolkit.Core.EventArgs;
 
 public interface IEventManager
 {
-    public static IEventManager Instance;
     void StartListening(string eventName, Action<IArguements> listener);
     void StopListening(string eventName, Action<IArguements> listener);
     void TriggerEvent(string eventName, IArguements message);
 }
 
-public class EventManager : MonoBehaviour, IEventManager
+public class EventManager : IEventManager
 {
-  private Dictionary<string, Action<IArguements>> eventDictionary;
-
-  void Awake()
-  {
-    if (eventDictionary == null) {
-      eventDictionary = new Dictionary<string, Action<IArguements>>();
-    }
-
-    if(IEventManager.Instance != null)
-        GameObject.Destroy(this);
-    else
-        IEventManager.Instance = this;
-  }
+  private Dictionary<string, Action<IArguements>> eventDictionary = new Dictionary<string, Action<IArguements>>();
 
   public void StartListening(string eventName, Action<IArguements> listener) {
     Action<IArguements> thisEvent;

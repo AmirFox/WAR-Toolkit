@@ -512,7 +512,8 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: 1, y: -1, z: 0}
     m_RuleTransform: 0
-  overlayTile: {fileID: 0}
+  OverlayTile: {fileID: 0}
+  <DisplayName>k__BackingField: Plains
   <BaseMoveValue>k__BackingField: 1
   <BaseDefenceModifier>k__BackingField: 0
   <IsAccesible>k__BackingField: 1

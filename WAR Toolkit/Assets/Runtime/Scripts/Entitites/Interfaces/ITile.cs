@@ -8,14 +8,10 @@ namespace WarToolkit.ObjectData
     public interface ITile
     {
         /// <summary>
-        /// x and y co-ordinate of tile.
+        /// Display name to show for this tile 
         /// </summary>
-        Vector2 Coordinates{ get; }
-
-        /// <summary>
-        /// Positions of neighbouring tiles.
-        /// </summary>
-    	Vector2[] Neighbors { get; }
+        /// <value></value>
+        public string DisplayName { get; }
 
         /// <summary>
         /// Point cost to move to tile.

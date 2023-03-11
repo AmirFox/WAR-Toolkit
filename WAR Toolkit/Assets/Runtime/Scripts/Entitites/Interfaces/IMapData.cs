@@ -20,11 +20,6 @@ namespace WarToolkit.ObjectData
         int Height { get; }
 
         /// <summary>
-        /// Seed used to randomise generated map information.
-        /// </summary>
-        string Seed { get; }
-
-        /// <summary>
         /// Retrieves tile data for a given map location.
         /// </summary>
         /// <param name="x"></param>

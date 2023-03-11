@@ -5,7 +5,7 @@ using WarToolkit.Core.EventArgs;
 using WarToolkit.ObjectData;
 using WarToolkit.Pathfinding;
 
-public class MovementSelectionHandler<T> : BaseSelectionHandler where T : ITile
+public class MovementActionListener<T> : PlayerActionListener where T : ITile
 {
     private ITileQuery<T> _tileQuery;
     private IMovable<T> _selectedMovable;
@@ -14,15 +14,15 @@ public class MovementSelectionHandler<T> : BaseSelectionHandler where T : ITile
 
     protected override Phase phase => Phase.MOVEMENT;
 
-    public MovementSelectionHandler(int playerIndex, IEventManager eventManager, ITileQuery<T> tileQuery) : base(playerIndex, eventManager) { }
+    public MovementActionListener(int playerIndex, IEventManager eventManager, ITileQuery<T> tileQuery) : base(playerIndex, eventManager) { }
 
-    protected override void AddListeners()
+    protected override void StartListening()
     {
         _eventManager.StartListening(Constants.EventNames.TILE_SELECTED, OnTileSelected);
         _eventManager.StartListening(Constants.EventNames.MOVABLE_SELECTED, OnMovableSelected);
     }
 
-    protected override void RemoveListeners()
+    protected override void StopListening()
     {
         _eventManager.StopListening(Constants.EventNames.TILE_SELECTED, OnTileSelected);
         _eventManager.StopListening(Constants.EventNames.MOVABLE_SELECTED, OnMovableSelected);

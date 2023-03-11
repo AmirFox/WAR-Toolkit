@@ -6,19 +6,28 @@ using UnityEngine;
 using WarToolkit.Core.Enums;
 using WarToolkit.Core.EventArgs;
 using WarToolkit.ObjectData;
+using Zenject;
 
 namespace WarToolkit.Managers
 {
-    public class TurnManager : MonoBehaviour
+    public interface ITurnManager
     {
-        public static TurnManager Instance;
+        Phase CurrentPhase { get; }
+        
+        Player CurrentPlayer { get; }
+        
+        void NextPhase();
 
+        void NextTurn();
+    }
+
+    public class TurnManager : MonoBehaviour, ITurnManager
+    {
         #region EVENTS
         public event EventHandler<GameCompleteEventArgs> OnGameComplete;
         #endregion
         
-        [Tooltip("Static data defining the factions currently playing.")]
-        [field: SerializeField]
+        [Inject]
         private FactionData[] _factions;
 
         [field: SerializeField]
@@ -32,21 +41,11 @@ namespace WarToolkit.Managers
 
         public Player CurrentPlayer { get => _players[_currentPlayerIndex]; }
 
+        [Inject]
         private IEventManager _eventManager;
 
         private void Awake()
         {
-            if (Instance != null && Instance != this) 
-            { 
-                Destroy(this); 
-            } 
-            else 
-            { 
-                Instance = this; 
-            } 
-
-            _eventManager = IEventManager.Instance;
-
             foreach (FactionData factionData in _factions)
             {
                 _players.Add(new Player(factionData));

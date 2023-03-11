@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using WarToolkit.ObjectData;
 using WarToolkit.Core.Enums;
+using Zenject;
 
 namespace WarToolkit.Pathfinding
 {
@@ -11,13 +12,14 @@ namespace WarToolkit.Pathfinding
     public class MovementHighlighter<T> : ITileQuery<T> where T : ITile
     {
         #region PROTECTED FIELDS
-        protected readonly IMapController<T> _tileMap;
+        [Inject]
+        protected IMapController<T> _mapController;
         #endregion
 
         #region CTORS
-        public MovementHighlighter(IMapController<T> tileMap)
+        public MovementHighlighter(IMapController<T> mapController)
         {
-            _tileMap = tileMap;
+            _mapController = mapController;
         }
         #endregion
 
@@ -47,13 +49,11 @@ namespace WarToolkit.Pathfinding
                 //add the last tile of the current path to the closed list
                 closed.Add(current.Last);
 
+                T[] neighbors = _mapController.GetNeighbors(current.Last);
                 //for all tiles neighbouring the last tile (if they are unoccupied) - add them to the open path list
-                for (int i = 0; i < current.Last.Neighbors.Length; i++)
+                for (int i = 0; i < neighbors.Length; i++)
                 {
-                    Vector2 neighborPosition = current.Last.Neighbors[i];
-                    if (neighborPosition == null) continue;
-
-                    T neighbor = _tileMap.GetTile(neighborPosition);
+                    T neighbor = neighbors[i];
 
                     if (neighbor == null) continue;
 

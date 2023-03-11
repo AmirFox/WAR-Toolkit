@@ -169,7 +169,85 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &200953954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 200953957}
+  - component: {fileID: 200953956}
+  - component: {fileID: 200953955}
+  m_Layer: 0
+  m_Name: SceneContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &200953955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200953954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c124661051f0ec543ac0c080397de285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapData: {fileID: 11400000, guid: f5aa7e6ed70555b49935c6a82d8a3bd2, type: 2}
+--- !u!114 &200953956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200953954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 200953955}
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
+--- !u!4 &200953957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200953954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &238502753
 MonoBehaviour:
@@ -237,7 +315,7 @@ Transform:
   - {fileID: 1380951711}
   - {fileID: 1881596430}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &1007433020
 Grid:
@@ -556,6 +634,7 @@ GameObject:
   - component: {fileID: 1380951711}
   - component: {fileID: 1380951709}
   - component: {fileID: 1380951710}
+  - component: {fileID: 1380951712}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -699,77 +778,22 @@ Transform:
   m_Father: {fileID: 1007433019}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1410786061
-GameObject:
+--- !u!19719996 &1380951712
+TilemapCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1410786063}
-  - component: {fileID: 1410786062}
-  - component: {fileID: 1410786064}
-  m_Layer: 0
-  m_Name: MapEditor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1410786062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410786061}
+  m_GameObject: {fileID: 1380951708}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83636af72ad30fb4ca4e2148bebcf542, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mapData: {fileID: 11400000, guid: 021232342fcc5134b96b1418a5a9865b, type: 2}
---- !u!4 &1410786063
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410786061}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1410786064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410786061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a713491f448b2847be9b1eb3641cec6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <_tileMap>k__BackingField: {fileID: 0}
-  <_overlayTiles>k__BackingField: {fileID: 0}
-  <_terrains>k__BackingField:
-  - {fileID: 0}
-  <Seed>k__BackingField: 
-  <Width>k__BackingField: 10
-  <Height>k__BackingField: 10
-  _frequency: 1
-  _dimensions: 3
-  _ocvtaves: 1
-  _lacurnity: 2
-  _persistence: 0.5
-  _noiseMethod: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &1458862267
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,23 +823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a713491f448b2847be9b1eb3641cec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <_tileMap>k__BackingField: {fileID: 1380951709}
-  <_overlayTiles>k__BackingField: {fileID: 1881596428}
-  <_terrains>k__BackingField:
-  - {fileID: 11400000, guid: 17ae0d78e6dd1fc4882edeba7d2b5b99, type: 2}
-  - {fileID: 11400000, guid: b7c035ecc0a5e0c47bd5454980880b2a, type: 2}
-  - {fileID: 11400000, guid: b8cc1251114e9184a87dd5e0966883bd, type: 2}
-  - {fileID: 11400000, guid: b966361b242e53f43b5da6413aa7d9cc, type: 2}
-  - {fileID: 11400000, guid: 0fcf17c9a0445c143af3217337da9146, type: 2}
-  <Seed>k__BackingField: test
-  <Width>k__BackingField: 100
-  <Height>k__BackingField: 100
-  _frequency: 0.1
-  _dimensions: 3
-  _ocvtaves: 6
-  _lacurnity: 3.49
-  _persistence: 0.108
-  _noiseMethod: 0
+  _tileMap: {fileID: 1380951709}
+  _overlayTiles: {fileID: 1881596428}
 --- !u!4 &1458862269
 Transform:
   m_ObjectHideFlags: 0
@@ -829,7 +838,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1881596427
 GameObject:

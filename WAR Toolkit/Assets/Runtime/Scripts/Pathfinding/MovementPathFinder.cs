@@ -11,13 +11,13 @@ namespace WarToolkit.Pathfinding
 public class MovementPathfinder<T> : ITilePathFinder<T> where T : ITile
 	{	
 		#region PRIVATE MEMBERS
-		protected readonly IMapController<T> _tileMap;
+		protected readonly IMapController<T> _mapController;
 		#endregion
 
 		#region CONSTRUCTOR
-		public MovementPathfinder (IMapController<T> tileMap) 
+		public MovementPathfinder (IMapController<T> mapController) 
 		{
-			_tileMap = tileMap;
+			_mapController = mapController;
 		}
 		#endregion
 
@@ -38,9 +38,9 @@ public class MovementPathfinder<T> : ITilePathFinder<T> where T : ITile
 			{
 				//if the last tile of current path is closed - move to the next path
 				if (closed.Contains(current.Last)) continue;
-
+				
 				//if the last tile is the destination - this is the shortest path - return it
-				if (current.Last.Coordinates == destination.Coordinates)
+				if (current.Last.Equals(destination))
 				{
 					return current;
 				}
@@ -48,12 +48,10 @@ public class MovementPathfinder<T> : ITilePathFinder<T> where T : ITile
 				//close the last tile of the current path
 				closed.Add(current.Last);
 
-				for (int i = 0; i < current.Last.Neighbors.Length; i++)
+				T[] neighbors = _mapController.GetNeighbors(current.Last);
+				for (int i = 0; i < neighbors.Length; i++)
 				{
-					Vector2 neighborPosition = current.Last.Neighbors[i];
-					if(neighborPosition == null) continue;
-
-					T neighbor = _tileMap.GetTile(neighborPosition);
+					T neighbor = neighbors[i];
 					if(neighbor == null) continue;
 
 					if (!neighbor.IsAccesible) continue;
