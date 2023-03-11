@@ -9,6 +9,10 @@ namespace WarToolkit.ObjectData
     /// </summary>
     public interface IMapData<T> where T : ITile
     {
+        Vector2[] SpawnPoints { get; }
+
+        int SpawnAreaSize { get; }
+
         /// <summary>
         /// Width of defined map.
         /// </summary>

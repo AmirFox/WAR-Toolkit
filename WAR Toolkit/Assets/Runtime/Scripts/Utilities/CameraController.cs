@@ -1,16 +1,26 @@
 using UnityEngine;
+using Zenject;
+using WarToolkit.ObjectData;
 
 public class CameraController : MonoBehaviour
 {
-    public float cameraSpeed = 5.0f;
-    public float screenEdgeBorder = 10.0f;
+    public float CameraSpeed = 5.0f;
+    public float ScreenEdgeBorder = 10.0f;
+
+    [Inject]
+    private IMapData<DataTile> mapData;
+
+    void Start()
+    {
+        //transform.position = mapData.SpawnPoints[0];
+    }
 
     void Update()
     {
         // Move camera using WASD keys
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        transform.position += new Vector3(horizontal, vertical, 0) * cameraSpeed * Time.deltaTime;
+        transform.position += new Vector3(horizontal, vertical, 0) * CameraSpeed * Time.deltaTime;
 
         // Move camera by pushing mouse to edge of screen
         float mouseX = Input.mousePosition.x;
@@ -18,22 +28,34 @@ public class CameraController : MonoBehaviour
         float screenWidth = Screen.width;
         float screenHeight = Screen.height;
 
-        if (mouseX < screenEdgeBorder)
+        if (mouseX < ScreenEdgeBorder)
         {
-            transform.position += Vector3.left * cameraSpeed * Time.deltaTime;
+            if(transform.position.x >= 0)
+            {
+                transform.position += Vector3.left * CameraSpeed * Time.deltaTime;
+            }
         }
-        else if (mouseX > screenWidth - screenEdgeBorder)
+        else if (mouseX > screenWidth - ScreenEdgeBorder)
         {
-            transform.position += Vector3.right * cameraSpeed * Time.deltaTime;
+            if(transform.position.x <= mapData.Width)
+            {
+                transform.position += Vector3.right * CameraSpeed * Time.deltaTime;
+            }
         }
 
-        if (mouseY < screenEdgeBorder)
+        if (mouseY < ScreenEdgeBorder)
         {
-            transform.position += Vector3.down * cameraSpeed * Time.deltaTime;
+            if(transform.position.y >= 0)
+            {
+                transform.position += Vector3.down * CameraSpeed * Time.deltaTime;
+            }
         }
-        else if (mouseY > screenHeight - screenEdgeBorder)
+        else if (mouseY > screenHeight - ScreenEdgeBorder)
         {
-            transform.position += Vector3.up * cameraSpeed * Time.deltaTime;
+            if(transform.position.y <= mapData.Height)
+            {
+                transform.position += Vector3.up * CameraSpeed * Time.deltaTime;
+            }
         }
     }
 }

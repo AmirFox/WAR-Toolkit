@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using WarToolkit.Utilities;
 using UnityEngine;
-using WarToolkit.Core.Enums;
 
 namespace WarToolkit.ObjectData
 {
@@ -12,6 +11,12 @@ namespace WarToolkit.ObjectData
     public class MapData : ScriptableObject, IMapData<DataTile>, INoiseGenerator
     {
         #region UI FIELDS
+        [field: SerializeField]
+        public Vector2[] SpawnPoints { get; private set; } 
+        
+        [field: SerializeField]
+        public int SpawnAreaSize { get; private set; } 
+
         [Header("Map Configuration")]
         [Tooltip("Types of tile sorted by height.")]
         [field: SerializeField]

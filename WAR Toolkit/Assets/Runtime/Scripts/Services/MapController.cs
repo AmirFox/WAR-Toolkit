@@ -6,6 +6,7 @@ using Zenject;
 using static Constants;
 using System.Collections.Generic;
 using System.Linq;
+using WarToolkit.Pathfinding;
 
 public class MapController : MonoBehaviour, IMapController<DataTile>
 {
@@ -21,6 +22,9 @@ public class MapController : MonoBehaviour, IMapController<DataTile>
 
     [Inject]
     private IEventManager _eventManager;
+
+    [Inject]
+    private ITileQuery<DataTile> _query;
     #endregion
 
     private void Start() 
@@ -84,6 +88,21 @@ public class MapController : MonoBehaviour, IMapController<DataTile>
     {
         HashSet<Vector3Int> neighborPositions = tile.neighborPositions;
         return neighborPositions.Select(p=>GetTile(p)).ToArray();
+    }
+
+    public DataTile[] GetSpawnPoint(int teamIndex)
+    {
+        if(teamIndex < _mapData.SpawnPoints.Length)
+        {
+            Vector2 spawnPoint = _mapData.SpawnPoints[teamIndex];
+            DataTile origin = GetTileAtCoord(spawnPoint);
+
+            if(origin == null) return new DataTile[0];
+            if(_mapData.SpawnAreaSize < 1) return new DataTile[0];
+
+            _query.QueryRadius(origin, _mapData.SpawnAreaSize);
+        }
+        return new DataTile[0];
     }
 
     public void Clear()
