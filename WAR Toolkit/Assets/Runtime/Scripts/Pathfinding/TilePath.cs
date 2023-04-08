@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using WarToolkit.ObjectData;
 
 namespace WarToolkit.Pathfinding
@@ -7,47 +8,40 @@ namespace WarToolkit.Pathfinding
     /// <summary>
     /// A path of tiles used in path highlighting and movement.
     /// </summary>
-    public class TilePath<T> where T : ITile
+    public class TilePath
     {
         #region PROPERTIES    
-        public T Last { get; private set; }
+        public Vector2 Last { get; private set; }
         public double Cost { get; private set; }
         #endregion
 
         #region PRIVATE MEMBERS
-        private IList<T> _tiles;
+        private IList<Vector2> _positions;
         #endregion
 
         #region CONSTRUCTORS
         public TilePath() 
         {
-            _tiles = new List<T>();
+            _positions = new List<Vector2>();
             Cost = 0;
-            Last = default(T);
+            Last = default;
         }
 
-        public TilePath(TilePath<T> tp)
+        public TilePath(TilePath tp)
         {
-            _tiles = tp._tiles.ToList();
+            _positions = tp._positions.ToList();
             Cost = tp.Cost;
             Last = tp.Last;
         }
         #endregion
 
         #region PUBLIC METHODS
-        public IEnumerable<T> PathToTiles()
+        public void AddTile(Vector2 position, double cost)
         {
-            _tiles.Distinct();
-            _tiles.Remove(_tiles[0]);
-            return _tiles;
-        }
+            Cost += cost;
 
-        public void AddTile(T t)
-        {
-            Cost += t.BaseMoveValue;
-
-            _tiles.Add(t);
-            Last = t;
+            _positions.Add(position);
+            Last = position;
         }
     	#endregion
     }

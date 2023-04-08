@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WarToolkit.Pathfinding;
 
-public class MapController : MonoBehaviour, IMapController<DataTile>
+public class MapController : MonoBehaviour, IMapController
 {
     #region FIELDS
     [field:SerializeField]
@@ -17,6 +17,9 @@ public class MapController : MonoBehaviour, IMapController<DataTile>
     [field:SerializeField]
     private Tilemap _overlayTiles;
 
+    [field:SerializeField]
+    private TilemapRenderer _tilemapRenderer;
+
     [Inject]
     private IMapData<DataTile> _mapData;
 
@@ -24,7 +27,7 @@ public class MapController : MonoBehaviour, IMapController<DataTile>
     private IEventManager _eventManager;
 
     [Inject]
-    private ITileQuery<DataTile> _query;
+    private ITileQuery _query;
     #endregion
 
     private void Start() 
@@ -61,6 +64,20 @@ public class MapController : MonoBehaviour, IMapController<DataTile>
         }
     }
     #region 
+    public void HighlightTiles(IEnumerable<DataTile> tiles, Color highlightColor)
+    {
+        TilemapRenderer tilemapRenderer = GetComponent<TilemapRenderer>();
+
+        foreach(DataTile tile in tiles)
+        {
+            Debug.Log("");
+            //tile.Transform.position;
+            //Vector3Int tilePos = tile.GetOffsetPosition()
+            //_tileMap.SetTileFlags(tilePos, TileFlags.None);
+            //_tileMap.SetColor(tilePos, highlightColor);
+        }
+    }
+
 
     public void GenerateMap()
     {
@@ -69,7 +86,7 @@ public class MapController : MonoBehaviour, IMapController<DataTile>
             for(int y = 0; y < _mapData.Height; y++)
             {
                 DataTile tile = _mapData.GetTileData(x,y);
-                _tileMap.SetTile(new Vector3Int(x,y), tile as TileBase);
+                _tileMap.SetTile(new Vector3Int(x,y), tile);
                 if(tile.OverlayTile != null)
                 {
                     _overlayTiles.SetTile(new Vector3Int(x,y), tile.OverlayTile);
@@ -78,31 +95,47 @@ public class MapController : MonoBehaviour, IMapController<DataTile>
         }
     }
 
-    public DataTile GetTileAtCoord(Vector2 coordinate)
+    public ITile GetTileAtCoord(Vector2 coordinate)
     {
         Vector3Int cell = new Vector3Int((int)coordinate.x, (int)coordinate.y);
         return this.GetTile(cell);
     }
 
-    public DataTile[] GetNeighbors(DataTile tile)
+    public Vector2[] GetNeighbors(Vector2 position)
     {
-        HashSet<Vector3Int> neighborPositions = tile.neighborPositions;
-        return neighborPositions.Select(p=>GetTile(p)).ToArray();
+        List<Vector2> neighbors = new List<Vector2>();
+
+        // Check left neighbor
+        if (position.x > 0)
+            neighbors.Add(new Vector2(position.x - 1, position.y));
+
+        // Check right neighbor
+        if (position.x < _mapData.Width - 1)
+            neighbors.Add(new Vector2(position.x + 1, position.y));
+
+        // Check bottom neighbor
+        if (position.y > 0)
+            neighbors.Add(new Vector2(position.x, position.y - 1));
+
+        // Check top neighbor
+        if (position.y < _mapData.Height - 1)
+            neighbors.Add(new Vector2(position.x, position.y + 1));
+
+        return neighbors.ToArray();
     }
 
-    public DataTile[] GetSpawnPoint(int teamIndex)
+    public Vector2[] GetSpawnArea(int teamIndex)
     {
         if(teamIndex < _mapData.SpawnPoints.Length)
         {
             Vector2 spawnPoint = _mapData.SpawnPoints[teamIndex];
-            DataTile origin = GetTileAtCoord(spawnPoint);
 
-            if(origin == null) return new DataTile[0];
-            if(_mapData.SpawnAreaSize < 1) return new DataTile[0];
-
-            _query.QueryRadius(origin, _mapData.SpawnAreaSize);
+            if(spawnPoint == null) return new Vector2[0];
+            if(_mapData.SpawnAreaSize < 1) return new Vector2[0];
+            
+            return _query.QueryRadius(spawnPoint, _mapData.SpawnAreaSize).ToArray();
         }
-        return new DataTile[0];
+        return new Vector2[0];
     }
 
     public void Clear()

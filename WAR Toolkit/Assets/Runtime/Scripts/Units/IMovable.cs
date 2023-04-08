@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using WarToolkit.ObjectData;
 
-public interface IMovable<T> where T : ITile
+public interface IMovable
 {
-    T CurrentTile{ get; }
+    Vector2 CurrentTile{ get; }
 
     /// <summary>
     /// Whether this object has moved or not.
@@ -21,7 +21,7 @@ public interface IMovable<T> where T : ITile
     /// Move this object to the target tile.
     /// </summary>
     /// <param name="tile">the target tile</param>
-    void MoveToTile(T tile);
+    void MoveToTile(Vector2 tile);
 
     void TurnReset();
 }

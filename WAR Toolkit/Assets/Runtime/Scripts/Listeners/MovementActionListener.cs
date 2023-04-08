@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using WarToolkit.Core.Enums;
 using WarToolkit.Core.EventArgs;
 using WarToolkit.ObjectData;
 using WarToolkit.Pathfinding;
 
-public class MovementActionListener<T> : PlayerActionListener where T : ITile
+public class MovementActionListener : PlayerActionListener
 {
-    private ITileQuery<T> _tileQuery;
-    private IMovable<T> _selectedMovable;
-    private T _selectedTile;
-    private List<T> _movementRange;
+    [Zenject.Inject] private ITileQuery _tileQuery;
+    [Zenject.Inject] private IMapController _mapController;
+    private IMovable _selectedMovable;
+    private Vector2 _selectedTile;
+    private List<Vector2> _movementRange;
 
     protected override Phase phase => Phase.MOVEMENT;
 
-    public MovementActionListener(int playerIndex, IEventManager eventManager, ITileQuery<T> tileQuery) : base(playerIndex, eventManager) { }
+    public MovementActionListener(int playerIndex, IEventManager eventManager, ITileQuery tileQuery) : base(playerIndex, eventManager) { }
 
     protected override void StartListening()
     {
@@ -41,19 +43,20 @@ public class MovementActionListener<T> : PlayerActionListener where T : ITile
             {
                 return;
             }            
-            
-            _selectedMovable = selectionArgs.MovableComponent as IMovable<T>;
+
+            _selectedMovable = selectionArgs.MovableComponent as IMovable;
             _movementRange = _tileQuery.QueryRadius(_selectedMovable.CurrentTile, (int)_selectedMovable.BaseMovementValue);
-                foreach(T tile in _movementRange)
+                foreach(Vector2 position in _movementRange)
                 {
-                    tile.SetHighlight(true);
+                    ITile tile = _mapController.GetTileAtCoord(position);
+                    tile?.SetHighlight(true);
                 }
             }
     }
 
     private void OnTileSelected(IArguements args)
     {
-        if(args is SelectionEventArgs<T> selectionArgs)
+        if(args is SelectionEventArgs<Vector2> selectionArgs)
         {
             if(_selectedMovable != null)
             {
@@ -66,20 +69,22 @@ public class MovementActionListener<T> : PlayerActionListener where T : ITile
         }
     }
 
-    private void SetSelection(T origin, int range)
+    private void SetSelection(Vector2 origin, int range)
     {
         _movementRange = _tileQuery.QueryRadius(origin, range);
-        foreach(T tile in _movementRange)
+        foreach(Vector2 position in _movementRange)
         {
-            tile.SetHighlight(true);
+            ITile tile = _mapController.GetTileAtCoord(position);
+            tile?.SetHighlight(true);
         }
     }
 
     private void ClearSelection()
     {
-        foreach(T tile in _movementRange)
+        foreach(Vector2 position in _movementRange)
         {
-            tile.SetHighlight(false);
+            ITile tile = _mapController.GetTileAtCoord(position);
+            tile?.SetHighlight(false);
         }
         _movementRange?.Clear();
         _selectedMovable = null;

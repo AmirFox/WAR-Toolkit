@@ -8,9 +8,9 @@ public class DependencyInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<ITileQuery<DataTile>>().To<MovementHighlighter<DataTile>>().AsSingle();
-        Container.Bind<ITilePathFinder<DataTile>>().To<MovementPathfinder<DataTile>>().AsSingle();
-        Container.Bind<IMapController<DataTile>>().To<MapController>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<ITileQuery>().To<MovementHighlighter>().AsSingle();
+        Container.Bind<ITilePathFinder>().To<MovementPathfinder>().AsSingle();
+        Container.Bind<IMapController>().To<MapController>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<IMapData<DataTile>>().To<MapData>().FromScriptableObject(mapData).AsSingle();
         Container.Bind<IEventManager>().To<EventManager>().AsSingle();
         Container.Bind<DebugSelectionListener>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();

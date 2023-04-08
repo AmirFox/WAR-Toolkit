@@ -1,5 +1,6 @@
 using WarToolkit.Core.Enums;
 using WarToolkit.Core.EventArgs;
+using WarToolkit.Managers;
 using WarToolkit.ObjectData;
 
 public class DeploymentActionListener<T_Tile, T_Deployable> : PlayerActionListener 
@@ -8,7 +9,8 @@ public class DeploymentActionListener<T_Tile, T_Deployable> : PlayerActionListen
 {
     private T_Tile[] _deploymentTiles;
 
-    private T_Deployable _selection;
+    private T_Deployable _selectedDeployable;
+    [Zenject.Inject] TurnManager _turnManager;
 
     protected override Phase phase => Phase.DEPLOYMENT;
 
@@ -31,11 +33,11 @@ public class DeploymentActionListener<T_Tile, T_Deployable> : PlayerActionListen
 
     private void OnTileSelected(IArguements args)
     {
-        if(args is SelectionEventArgs<T_Tile> selectionArgs)
+        if(args is SelectionEventArgs<T_Tile> selectedTileArgs)
         {
-            if(_selection != null)
+            if(_selectedDeployable != null)
             {
-                _selection.Deploy(selectionArgs.Selection);
+                _turnManager.CurrentPlayer.Deploy(_selectedDeployable, selectedTileArgs.Selection);
                 ClearSelection();
             }
         }
@@ -47,7 +49,7 @@ public class DeploymentActionListener<T_Tile, T_Deployable> : PlayerActionListen
         {
             if(!selectionArgs.Selection.IsDeployed)
             {
-                _selection = selectionArgs.Selection;
+                _selectedDeployable = selectionArgs.Selection;
                 SetSelection();
             }
         }

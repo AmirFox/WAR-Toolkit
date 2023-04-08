@@ -12,7 +12,7 @@ public class DebugSelectionListener  : MonoBehaviour
     private IEventManager _eventManager;
 
     [Inject]
-    private IMapController<DataTile> _mapController;
+    private IMapController _mapController;
 
     private void OnEnable() 
     {

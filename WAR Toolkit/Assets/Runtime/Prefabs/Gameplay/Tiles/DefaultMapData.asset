@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eeea3b20eb4924f89b8ffd52d87b82, type: 3}
   m_Name: DefaultMapData
   m_EditorClassIdentifier: 
+  <SpawnPoints>k__BackingField:
+  - {x: 56, y: 56}
+  <SpawnAreaSize>k__BackingField: 0
   _tileTypes:
   - {fileID: 11400000, guid: e1864a555e6657843abb051cee8ad831, type: 2}
   - {fileID: 11400000, guid: b7c035ecc0a5e0c47bd5454980880b2a, type: 2}

@@ -8,15 +8,14 @@ using WarToolkit.ObjectData;
 [CreateAssetMenu]
 public class DataTile : RuleTile<DataTile.Neighbor> , ITile
 {
-    [field: SerializeField] public RuleTile OverlayTile;
-
     #region UI FIELDS
+    [field: SerializeField] public RuleTile OverlayTile;
     [field: SerializeField] public string DisplayName {get; private set; }
     [field: SerializeField] public double BaseMoveValue { get; private set; } = 1;
     [field: SerializeField] public double BaseDefenceModifier { get; private set; } = 0;
     [field: SerializeField] public bool IsAccesible { get; private set; } = true;
     #endregion
-
+    
     public void SetHighlight(bool highlight)
     {
 
