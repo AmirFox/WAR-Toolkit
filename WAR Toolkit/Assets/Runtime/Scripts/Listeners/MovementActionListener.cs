@@ -46,11 +46,7 @@ public class MovementActionListener : PlayerActionListener
 
             _selectedMovable = selectionArgs.MovableComponent as IMovable;
             _movementRange = _tileQuery.QueryRadius(_selectedMovable.CurrentTile, (int)_selectedMovable.BaseMovementValue);
-                foreach(Vector2 position in _movementRange)
-                {
-                    ITile tile = _mapController.GetTileAtCoord(position);
-                    tile?.SetHighlight(true);
-                }
+            _mapController.HighlightTiles(_movementRange.ToArray());
             }
     }
 
@@ -72,20 +68,12 @@ public class MovementActionListener : PlayerActionListener
     private void SetSelection(Vector2 origin, int range)
     {
         _movementRange = _tileQuery.QueryRadius(origin, range);
-        foreach(Vector2 position in _movementRange)
-        {
-            ITile tile = _mapController.GetTileAtCoord(position);
-            tile?.SetHighlight(true);
-        }
+        _mapController.HighlightTiles(_movementRange.ToArray());
     }
 
     private void ClearSelection()
     {
-        foreach(Vector2 position in _movementRange)
-        {
-            ITile tile = _mapController.GetTileAtCoord(position);
-            tile?.SetHighlight(false);
-        }
+        _mapController.ClearHighlights();
         _movementRange?.Clear();
         _selectedMovable = null;
         _selectedTile = default;

@@ -8,19 +8,19 @@ namespace WarToolkit.ObjectData
     /// <summary>
     /// Scriptable object representing static map data.
     /// </summary>
-    public class MapData : ScriptableObject, IMapData<DataTile>, INoiseGenerator
+    public class MapData : ScriptableObject, INoiseGenerator
     {
         #region UI FIELDS
-        [field: SerializeField]
-        public Vector2[] SpawnPoints { get; private set; } 
-        
-        [field: SerializeField]
-        public int SpawnAreaSize { get; private set; } 
-
         [Header("Map Configuration")]
         [Tooltip("Types of tile sorted by height.")]
         [field: SerializeField]
-        private List<DataTile> _tileTypes;
+        private DataTile[] _tileTypes;
+
+        [field: SerializeField]
+        private RuleTile[] _overlayTiles;
+
+        [field: SerializeField]
+        public RuleTile highlightTile {get; private set; }
 
         [Tooltip("Map generation seed for randomization.")]
         [field: SerializeField]
@@ -69,12 +69,24 @@ namespace WarToolkit.ObjectData
         {
             float perlinValue = GenerateNoise(x, y);
             var clamped = Mathf.Clamp01(perlinValue);
-            var index = Mathf.FloorToInt(clamped * _tileTypes.Count);
+            var index = Mathf.FloorToInt(clamped * _tileTypes.Length);
 
-            if (index >= _tileTypes.Count)
-                index = _tileTypes.Count - 1;
+            if (index >= _tileTypes.Length)
+                index = _tileTypes.Length - 1;
 
             return _tileTypes[index];
+        }
+
+        public RuleTile GetOverlayTile(int x, int y)
+        {
+            float perlinValue = GenerateNoise(x, y);
+            var clamped = Mathf.Clamp01(perlinValue);
+            var index = Mathf.FloorToInt(clamped * _tileTypes.Length);
+
+            if (index >= _overlayTiles.Length)
+                return null;
+
+            return _overlayTiles[index];
         }
 
         public float GenerateNoise(float x, float y)

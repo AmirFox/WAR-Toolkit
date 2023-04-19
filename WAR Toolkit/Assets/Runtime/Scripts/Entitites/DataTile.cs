@@ -9,17 +9,11 @@ using WarToolkit.ObjectData;
 public class DataTile : RuleTile<DataTile.Neighbor> , ITile
 {
     #region UI FIELDS
-    [field: SerializeField] public RuleTile OverlayTile;
     [field: SerializeField] public string DisplayName {get; private set; }
     [field: SerializeField] public double BaseMoveValue { get; private set; } = 1;
     [field: SerializeField] public double BaseDefenceModifier { get; private set; } = 0;
     [field: SerializeField] public bool IsAccesible { get; private set; } = true;
     #endregion
-    
-    public void SetHighlight(bool highlight)
-    {
-
-    }
 
     public class Neighbor : RuleTile.TilingRule.Neighbor {
         public const int Null = 3;

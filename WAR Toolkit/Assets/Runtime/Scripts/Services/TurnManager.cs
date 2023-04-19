@@ -28,11 +28,7 @@ namespace WarToolkit.Managers
         #endregion
         
         [Inject]
-        private FactionData[] _factions;
-
-        [field: SerializeField]
-        private GameType _gameType;
-
+        private MatchData _matchData;
         private List<Player> _players = new List<Player>();
         private int _currentPlayerIndex = 0;
         private int _currentTurn = 1;
@@ -44,12 +40,20 @@ namespace WarToolkit.Managers
         [Inject]
         private IEventManager _eventManager;
 
+        [Inject]
+        private readonly Player.Factory _playerFactory;
+
         private void Awake()
         {
-            foreach (FactionData factionData in _factions)
-            {
-                _players.Add(new Player(factionData));
-            }
+            Player player1 = _playerFactory.Create(_matchData.faction1, _matchData.startingResources1, _matchData.spawnZonePosition1, _matchData.spawnZoneSize1);
+            Player player2 = _playerFactory.Create(_matchData.faction2, _matchData.startingResources2, _matchData.spawnZonePosition2, _matchData.spawnZoneSize2);
+            _players.Add(player1);
+            _players.Add(player2);
+        }
+
+        private void Start() 
+        {
+            _eventManager.TriggerEvent(Constants.EventNames.GAME_STATE_CHANGED, new GameStateChangeArgs(_currentPlayerIndex, CurrentPhase));            
         }
 
         public void NextPhase()

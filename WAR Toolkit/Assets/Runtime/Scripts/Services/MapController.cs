@@ -18,16 +18,18 @@ public class MapController : MonoBehaviour, IMapController
     private Tilemap _overlayTiles;
 
     [field:SerializeField]
-    private TilemapRenderer _tilemapRenderer;
+    private Tilemap _highlightLayer;
 
     [Inject]
-    private IMapData<DataTile> _mapData;
+    private MatchData matchData;
 
     [Inject]
     private IEventManager _eventManager;
 
     [Inject]
     private ITileQuery _query;
+
+    private MapData _mapData => matchData.mapData;
     #endregion
 
     private void Start() 
@@ -64,20 +66,19 @@ public class MapController : MonoBehaviour, IMapController
         }
     }
     #region 
-    public void HighlightTiles(IEnumerable<DataTile> tiles, Color highlightColor)
+    public void HighlightTiles(Vector2[] positions)
     {
-        TilemapRenderer tilemapRenderer = GetComponent<TilemapRenderer>();
-
-        foreach(DataTile tile in tiles)
+        foreach(Vector2 position in positions)
         {
-            Debug.Log("");
-            //tile.Transform.position;
-            //Vector3Int tilePos = tile.GetOffsetPosition()
-            //_tileMap.SetTileFlags(tilePos, TileFlags.None);
-            //_tileMap.SetColor(tilePos, highlightColor);
+            Debug.Log($"Highlighting tile at {position}");
+            _highlightLayer.SetTile(new Vector3Int((int)position.x, (int)position.y), _mapData.highlightTile);
         }
     }
 
+    public void ClearHighlights()
+    {
+        _highlightLayer.ClearAllTiles();
+    }
 
     public void GenerateMap()
     {
@@ -87,9 +88,11 @@ public class MapController : MonoBehaviour, IMapController
             {
                 DataTile tile = _mapData.GetTileData(x,y);
                 _tileMap.SetTile(new Vector3Int(x,y), tile);
-                if(tile.OverlayTile != null)
+                
+                RuleTile overlayTile = _mapData.GetOverlayTile(x,y);
+                if(overlayTile != null)
                 {
-                    _overlayTiles.SetTile(new Vector3Int(x,y), tile.OverlayTile);
+                    _overlayTiles.SetTile(new Vector3Int(x,y), overlayTile);
                 }
             }
         }
@@ -126,15 +129,15 @@ public class MapController : MonoBehaviour, IMapController
 
     public Vector2[] GetSpawnArea(int teamIndex)
     {
-        if(teamIndex < _mapData.SpawnPoints.Length)
-        {
-            Vector2 spawnPoint = _mapData.SpawnPoints[teamIndex];
+        // if(teamIndex < _mapData.SpawnPoints.Length)
+        // {
+        //     Vector2 spawnPoint = _mapData.SpawnPoints[teamIndex];
 
-            if(spawnPoint == null) return new Vector2[0];
-            if(_mapData.SpawnAreaSize < 1) return new Vector2[0];
+        //     if(spawnPoint == null) return new Vector2[0];
+        //     if(_mapData.SpawnAreaSize < 1) return new Vector2[0];
             
-            return _query.QueryRadius(spawnPoint, _mapData.SpawnAreaSize).ToArray();
-        }
+        //     return _query.QueryRadius(spawnPoint, _mapData.SpawnAreaSize).ToArray();
+        // }
         return new Vector2[0];
     }
 

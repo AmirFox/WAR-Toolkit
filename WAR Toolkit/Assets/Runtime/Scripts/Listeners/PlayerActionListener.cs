@@ -35,7 +35,6 @@ public class DebugSelectionListener  : MonoBehaviour
 
 public abstract class PlayerActionListener
 {
-    [Inject]
     protected IEventManager _eventManager;
 
     protected int _playerIndex;
@@ -55,6 +54,8 @@ public abstract class PlayerActionListener
         {
             if(IsPhaseEntered(stateChangeArgs))
             {
+                
+                Debug.Log($"GAME STATE ENTERED: {stateChangeArgs.NewPhase}");
                 StartListening();
             }
             else

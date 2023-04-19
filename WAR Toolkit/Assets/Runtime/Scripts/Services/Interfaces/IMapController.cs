@@ -32,5 +32,9 @@ namespace WarToolkit.ObjectData
 		/// Clears all tiles from map.
 		/// </summary>
         void Clear();
+
+        void HighlightTiles(Vector2[] positions);
+
+        void ClearHighlights();
     }
 }

@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47a0edbe68c38a5458c7af387785d1c5, type: 3}
-  m_Name: TestTeam
+  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
+  m_Name: Highlight
   m_EditorClassIdentifier: 
-  _deployables: []
-  <FactionName>k__BackingField: 
+  m_DefaultSprite: {fileID: 21300000, guid: eacc0f3b6e2940b4ea587bf5fc033b19, type: 3}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules: []

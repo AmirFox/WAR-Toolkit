@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eeea3b20eb4924f89b8ffd52d87b82, type: 3}
   m_Name: DefaultMapData
   m_EditorClassIdentifier: 
-  <SpawnPoints>k__BackingField:
-  - {x: 56, y: 56}
-  <SpawnAreaSize>k__BackingField: 0
   _tileTypes:
   - {fileID: 11400000, guid: e1864a555e6657843abb051cee8ad831, type: 2}
   - {fileID: 11400000, guid: b7c035ecc0a5e0c47bd5454980880b2a, type: 2}
   - {fileID: 11400000, guid: b8cc1251114e9184a87dd5e0966883bd, type: 2}
   - {fileID: 11400000, guid: b966361b242e53f43b5da6413aa7d9cc, type: 2}
   - {fileID: 11400000, guid: 0fcf17c9a0445c143af3217337da9146, type: 2}
+  _overlayTiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 9debc5804b61c584eb0eb67ba5273a62, type: 2}
+  - {fileID: 11400000, guid: f2b243fb1023cb94580e440ad0876f43, type: 2}
+  - {fileID: 11400000, guid: 2b52a2411c083d34bb5529ae3e4df54a, type: 2}
+  <highlightTile>k__BackingField: {fileID: 11400000, guid: e4a01da442d22934ba6323ba02b25225, type: 2}
   <Seed>k__BackingField: test
   <Width>k__BackingField: 100
   <Height>k__BackingField: 100

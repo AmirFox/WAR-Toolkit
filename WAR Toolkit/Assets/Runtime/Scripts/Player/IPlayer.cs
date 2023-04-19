@@ -6,10 +6,12 @@ namespace WarToolkit.ObjectData
 {
     public interface IPlayer
     {
-        FactionData factionData { get; }
+        IFactionData factionData { get; }
         int PlayerIndex { get; }
         int Resources { get; }
         bool IsEliminated { get; }
+        Vector2 SpawnZonePosition { get; }
+        int spawnZoneSize { get; }
 
         void Deploy(IDeployable unit, ITile tile);
     }

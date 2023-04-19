@@ -3,15 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using WarToolkit.Core.EventArgs;
+using WarToolkit.Managers;
 using WarToolkit.ObjectData;
+using static Constants;
 
 public class DeploymentView : MonoBehaviour
 {
-    private GameObject deploymentButtonPrefab;
-    private GameObject buttonPanel;
-    private IEventManager eventManager;
+    [Zenject.Inject] private IEventManager eventManager;
+    [Zenject.Inject] private TurnManager turnManager; 
+    [SerializeField] private GameObject deploymentButtonPrefab;
+    [SerializeField] private GameObject buttonPanel;
 
-    private void ClearButtons() { }
+    void Awake()
+    {
+        eventManager.StartListening(EventNames.GAME_STATE_CHANGED, OnPhaseChanged);
+    }
+
+    private void OnPhaseChanged(IArguements args)
+    {
+        if(args is GameStateChangeArgs asGameStateArgs)
+        {
+            if(asGameStateArgs.NewPhase == WarToolkit.Core.Enums.Phase.DEPLOYMENT)
+            {
+                LoadUnitButtons(turnManager.CurrentPlayer.factionData.Deployables);
+            }
+            else
+            {
+                ClearButtons();
+            }
+        }
+    }
+
+    private void ClearButtons() 
+    {
+        foreach(Button button in buttonPanel.GetComponentsInChildren<Button>())
+        {
+            GameObject.Destroy(button);
+        }
+    }
 
     private void LoadUnitButtons(IEnumerable<IDeployable> deployables)
     {
@@ -22,9 +51,11 @@ public class DeploymentView : MonoBehaviour
             //load a new unit button with the deployable data
             if(deployable is Deployable deployableComponent)
             {
-                button.GetComponentInChildren<SpriteRenderer>().sprite = deployableComponent.GetComponent<SpriteRenderer>().sprite;
+                button.SetActive(true);
+                button.transform.GetChild(0).GetComponent<Image>().sprite = deployableComponent.GetComponent<SpriteRenderer>().sprite;
             }
             button.GetComponent<Button>().onClick.AddListener(()=>OnButtonClicked(deployable));
+            button.transform.SetParent(buttonPanel.transform);
         }
     }
 

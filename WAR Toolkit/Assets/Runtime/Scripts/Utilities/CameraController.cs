@@ -7,11 +7,14 @@ public class CameraController : MonoBehaviour
     public float CameraSpeed = 5.0f;
     public float ScreenEdgeBorder = 10.0f;
 
-    [Inject]
-    private IMapData<DataTile> mapData;
+    [Inject] private MatchData matchData;
+
+    int width => matchData.mapData.Width;
+    int height => matchData.mapData.Height;
 
     void Start()
     {
+
         //transform.position = mapData.SpawnPoints[0];
     }
 
@@ -37,7 +40,7 @@ public class CameraController : MonoBehaviour
         }
         else if (mouseX > screenWidth - ScreenEdgeBorder)
         {
-            if(transform.position.x <= mapData.Width)
+            if(transform.position.x <= width)
             {
                 transform.position += Vector3.right * CameraSpeed * Time.deltaTime;
             }
@@ -52,7 +55,7 @@ public class CameraController : MonoBehaviour
         }
         else if (mouseY > screenHeight - ScreenEdgeBorder)
         {
-            if(transform.position.y <= mapData.Height)
+            if(transform.position.y <= height)
             {
                 transform.position += Vector3.up * CameraSpeed * Time.deltaTime;
             }

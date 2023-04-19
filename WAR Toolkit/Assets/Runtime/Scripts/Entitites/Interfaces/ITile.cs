@@ -28,7 +28,5 @@ namespace WarToolkit.ObjectData
         /// </summary>
         /// <value></value>
         double BaseDefenceModifier { get; }
-
-        public void SetHighlight(bool highlight);
     }
 }
