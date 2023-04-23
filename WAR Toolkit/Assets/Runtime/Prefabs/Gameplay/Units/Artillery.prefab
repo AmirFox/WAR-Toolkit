@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4752208253774327690, guid: ca23e45012ac22a4e92b8ac23269c868, type: 3}
+      propertyPath: <Cost>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4752208253774327690, guid: ca23e45012ac22a4e92b8ac23269c868, type: 3}
+      propertyPath: <BaseAttackValue>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4752208253774327690, guid: ca23e45012ac22a4e92b8ac23269c868, type: 3}
+      propertyPath: <BaseDefenceValue>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4752208253774327690, guid: ca23e45012ac22a4e92b8ac23269c868, type: 3}
+      propertyPath: <BaseMovementValue>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1671261374525805231, guid: ca23e45012ac22a4e92b8ac23269c868, type: 3}
       propertyPath: m_Name
       value: Artillery

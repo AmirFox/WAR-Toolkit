@@ -9,14 +9,14 @@ using static Constants;
 
 public class DeploymentView : MonoBehaviour
 {
-    [Zenject.Inject] private IEventManager eventManager;
-    [Zenject.Inject] private TurnManager turnManager; 
+    [Zenject.Inject] private IEventManager _eventManager;
+    [Zenject.Inject] private ITurnManager _turnManager; 
     [SerializeField] private GameObject deploymentButtonPrefab;
     [SerializeField] private GameObject buttonPanel;
 
     void Awake()
     {
-        eventManager.StartListening(EventNames.GAME_STATE_CHANGED, OnPhaseChanged);
+        _eventManager.StartListening(EventNames.GAME_STATE_CHANGED, OnPhaseChanged);
     }
 
     private void OnPhaseChanged(IArguements args)
@@ -25,7 +25,7 @@ public class DeploymentView : MonoBehaviour
         {
             if(asGameStateArgs.NewPhase == WarToolkit.Core.Enums.Phase.DEPLOYMENT)
             {
-                LoadUnitButtons(turnManager.CurrentPlayer.factionData.Deployables);
+                LoadUnitButtons(asGameStateArgs.NewPlayerIndex);
             }
             else
             {
@@ -42,26 +42,23 @@ public class DeploymentView : MonoBehaviour
         }
     }
 
-    private void LoadUnitButtons(IEnumerable<IDeployable> deployables)
+    private void LoadUnitButtons(int playerIndex)
     {
-        foreach(IDeployable deployable in deployables)
-        {
-            GameObject button = GameObject.Instantiate(deploymentButtonPrefab);
+        if(!_turnManager.TryGetPlayer(playerIndex, out IPlayer player)) return;
 
-            //load a new unit button with the deployable data
-            if(deployable is Deployable deployableComponent)
-            {
-                button.SetActive(true);
-                button.transform.GetChild(0).GetComponent<Image>().sprite = deployableComponent.GetComponent<SpriteRenderer>().sprite;
-            }
-            button.GetComponent<Button>().onClick.AddListener(()=>OnButtonClicked(deployable));
-            button.transform.SetParent(buttonPanel.transform);
+        for(int i = 0; i < player.factionData.RosterSize; i++)
+        {
+            CreateButton(playerIndex, i);
         }
     }
 
-    private void OnButtonClicked(IDeployable deployable)
+    private void CreateButton(int playerIndex, int deployableIndex)
     {
-        SelectionEventArgs<IDeployable> args = new SelectionEventArgs<IDeployable>(deployable);
-        eventManager.TriggerEvent(Constants.EventNames.DEPLOYABLE_SELECTED, args);
+        GameObject button = GameObject.Instantiate(deploymentButtonPrefab);
+        button.SetActive(true);
+
+        DeployableSelectedEventArgs args = new DeployableSelectedEventArgs(playerIndex, deployableIndex);
+        button.GetComponent<Button>().onClick.AddListener(()=>_eventManager.TriggerEvent(Constants.EventNames.DEPLOYABLE_SELECTED, args));
+        button.transform.SetParent(buttonPanel.transform);
     }
 }

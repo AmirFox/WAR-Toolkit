@@ -12,7 +12,5 @@ namespace WarToolkit.ObjectData
         bool IsEliminated { get; }
         Vector2 SpawnZonePosition { get; }
         int spawnZoneSize { get; }
-
-        void Deploy(IDeployable unit, ITile tile);
     }
 }

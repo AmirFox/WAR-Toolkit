@@ -10,9 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7396479593825275877}
   - component: {fileID: -4752208253774327690}
-  - component: {fileID: 8616754364137226757}
-  - component: {fileID: 2749342341804042996}
-  - component: {fileID: -4311851154969783732}
   - component: {fileID: 5930138376231975347}
   m_Layer: 0
   m_Name: DeployableUnit
@@ -48,46 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe4a206c9002614abf752e612f38719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8616754364137226757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1671261374525805231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 179021cec2891f9468eaf8806404dc00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <BaseMovementValue>k__BackingField: 1
---- !u!114 &2749342341804042996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1671261374525805231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 139ed594d3df01f449fdb46262f139bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <BaseAttackValue>k__BackingField: 1
-  <BaseDefenceValue>k__BackingField: 1
---- !u!114 &-4311851154969783732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1671261374525805231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82e44b79b8911914c848dd62855bde99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Cost>k__BackingField: 1
+  <Cost>k__BackingField: 0
+  <BaseMovementValue>k__BackingField: 0
+  <BaseAttackValue>k__BackingField: 0
+  <BaseDefenceValue>k__BackingField: 0
 --- !u!212 &5930138376231975347
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -128,7 +89,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

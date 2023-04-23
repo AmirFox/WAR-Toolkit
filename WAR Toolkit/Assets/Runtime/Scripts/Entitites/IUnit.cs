@@ -3,10 +3,8 @@ namespace WarToolkit.ObjectData
     /// <summary>
     /// Interface for unit properties.
     /// </summary>
-    public interface IUnit
+    public interface IUnit : IDeployable, IMovable, ICombatant
     {
-        int PlayerIndex { set; get; }
-
         string TypeIdentifier { get; }
     }
 }

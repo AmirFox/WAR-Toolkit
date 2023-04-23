@@ -24,6 +24,11 @@ namespace WarToolkit.ObjectData
         bool IsAccesible { get; }
 
         /// <summary>
+        /// Whether the given tile is occupied or not.
+        /// </summary>
+        bool IsOccupied { get; }
+
+        /// <summary>
         /// Modifier for a unit's defence value on tile.
         /// </summary>
         /// <value></value>

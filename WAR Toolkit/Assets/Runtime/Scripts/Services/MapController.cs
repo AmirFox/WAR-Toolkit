@@ -7,6 +7,7 @@ using static Constants;
 using System.Collections.Generic;
 using System.Linq;
 using WarToolkit.Pathfinding;
+using WarToolkit.Managers;
 
 public class MapController : MonoBehaviour, IMapController
 {
@@ -29,15 +30,22 @@ public class MapController : MonoBehaviour, IMapController
     [Inject]
     private ITileQuery _query;
 
+    [Inject]
+    private ITurnManager _turnManager;
+
+    [Inject]
+    private ITileQuery _tileQuery;
+
     private MapData _mapData => matchData.mapData;
     #endregion
 
     private void Start() 
     {
         this.GenerateMap();
+        _eventManager.StartListening(EventNames.DEPLOYABLE_SELECTED, OnDeployableSelected);
     }
 
-    private void Update() 
+    private void FixedUpdate() 
     {
         if (Input.GetMouseButtonDown(0)) 
         {
@@ -57,10 +65,9 @@ public class MapController : MonoBehaviour, IMapController
             {
                 Vector3 point = hit.point;
                 Vector3Int cell = this._tileMap.WorldToCell(point);
-                DataTile selection = _tileMap.GetTile<DataTile>(cell);
-                if(selection != null)
+                if(cell != null)
                 {
-                    this._eventManager.TriggerEvent(EventNames.TILE_SELECTED, new SelectionEventArgs<ITile>(selection));
+                    this._eventManager.TriggerEvent(EventNames.TILE_SELECTED, new TileSelectedEventArgs(new Vector2(cell.x, cell.y)));
                 }
             }
         }
@@ -70,7 +77,6 @@ public class MapController : MonoBehaviour, IMapController
     {
         foreach(Vector2 position in positions)
         {
-            Debug.Log($"Highlighting tile at {position}");
             _highlightLayer.SetTile(new Vector3Int((int)position.x, (int)position.y), _mapData.highlightTile);
         }
     }
@@ -148,6 +154,19 @@ public class MapController : MonoBehaviour, IMapController
     #endregion
 
     #region PRIVATE METHODS
+    
+    private void OnDeployableSelected(IArguements args)
+    {
+        if(args is DeployableSelectedEventArgs selectionArgs)
+        {
+            if(_turnManager.TryGetPlayer(selectionArgs.playerIndex, out IPlayer player))
+            {
+                List<Vector2> spawnTiles = _tileQuery.QueryRadius(player.SpawnZonePosition, player.spawnZoneSize, true);
+                HighlightTiles(spawnTiles.ToArray());
+            }
+        }
+    }
+
     private DataTile GetTile(Vector3Int cell)
     {
         return this._tileMap.GetTile<DataTile>(cell);

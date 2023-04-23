@@ -1,3 +1,4 @@
+using UnityEngine;
 using WarToolkit.ObjectData;
 
 public interface IDeployable
@@ -5,5 +6,5 @@ public interface IDeployable
     int Cost { get; }
     bool IsDeployed { get; }
 
-    void Deploy<T>(T tile) where T : ITile;
+    void Deploy(Vector2 position);
 }

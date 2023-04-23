@@ -15,7 +15,7 @@ namespace WarToolkit.ObjectData
         [Zenject.Inject] private IMapController _mapController;
         [Zenject.Inject] private ITileQuery _tileQuery;
         [Zenject.Inject] private IEventManager _eventManager;
-        private List<GameObject> _units;
+        private List<IUnit> _units;
         public IFactionData factionData { get; }
 
         public int PlayerIndex { get; }
@@ -39,18 +39,6 @@ namespace WarToolkit.ObjectData
             this.SpawnZonePosition = spawnZonePosition;
             this.spawnZoneSize = spawnZoneSize;
             _eventManager.StartListening(Constants.EventNames.GAME_STATE_CHANGED, OnStateChanged);
-        }
-
-        public void Deploy(IDeployable unit, ITile tile)
-        {
-            if(factionData.Deployables.Contains(unit))
-            {
-                if(unit.Cost <= Resources)
-                {
-                    unit.Deploy(tile);
-                    Resources -= unit.Cost;
-                }
-            }
         }
 
         
@@ -86,11 +74,13 @@ namespace WarToolkit.ObjectData
         
         private void OnDeploymentTileSelected(IArguements args)
         {
-            if(args is SelectionEventArgs<ITile> selectedTileArgs)
+            if(args is TileSelectedEventArgs selectedTileArgs)
             {
                 if(_selectedDeployable != null)
                 {
-                    Deploy(_selectedDeployable, selectedTileArgs.Selection);
+                    Debug.Log("TILE SELECTED!");
+                    _selectedDeployable.Deploy(selectedTileArgs.position);
+                    Resources -= _selectedDeployable.Cost;
                     _mapController.ClearHighlights();
                 }
             }
@@ -98,13 +88,11 @@ namespace WarToolkit.ObjectData
 
         private void OnDeployableSelected(IArguements args)
         {
-            if(args is SelectionEventArgs<IDeployable> selectionArgs)
+            if(args is DeployableSelectedEventArgs selectionArgs)
             {
-                if(!selectionArgs.Selection.IsDeployed)
+                Debug.Log($"DEPLOYABLE SELECTED: {selectionArgs.deployableIndex}");
+                if(factionData.TryGetDeployable(selectionArgs.deployableIndex, out _selectedDeployable))
                 {
-                    _selectedDeployable = selectionArgs.Selection;
-                    List<Vector2> spawnTiles = _tileQuery.QueryRadius(SpawnZonePosition, spawnZoneSize, true);
-                    _mapController.HighlightTiles(spawnTiles.ToArray());
                 }
             }
         }

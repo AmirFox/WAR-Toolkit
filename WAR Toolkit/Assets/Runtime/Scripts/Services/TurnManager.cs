@@ -14,11 +14,11 @@ namespace WarToolkit.Managers
     {
         Phase CurrentPhase { get; }
         
-        Player CurrentPlayer { get; }
-        
         void NextPhase();
 
         void NextTurn();
+
+        bool TryGetPlayer(int index, out IPlayer player);
     }
 
     public class TurnManager : MonoBehaviour, ITurnManager
@@ -29,13 +29,11 @@ namespace WarToolkit.Managers
         
         [Inject]
         private MatchData _matchData;
-        private List<Player> _players = new List<Player>();
+        private IPlayer[] _players;
         private int _currentPlayerIndex = 0;
         private int _currentTurn = 1;
 
         public Phase CurrentPhase { get; private set; } = Phase.DEPLOYMENT;
-
-        public Player CurrentPlayer { get => _players[_currentPlayerIndex]; }
 
         [Inject]
         private IEventManager _eventManager;
@@ -45,15 +43,26 @@ namespace WarToolkit.Managers
 
         private void Awake()
         {
-            Player player1 = _playerFactory.Create(_matchData.faction1, _matchData.startingResources1, _matchData.spawnZonePosition1, _matchData.spawnZoneSize1);
-            Player player2 = _playerFactory.Create(_matchData.faction2, _matchData.startingResources2, _matchData.spawnZonePosition2, _matchData.spawnZoneSize2);
-            _players.Add(player1);
-            _players.Add(player2);
+            _players = new IPlayer[]
+            {
+                _playerFactory.Create(_matchData.faction1, _matchData.startingResources1, _matchData.spawnZonePosition1, _matchData.spawnZoneSize1),
+                _playerFactory.Create(_matchData.faction2, _matchData.startingResources2, _matchData.spawnZonePosition2, _matchData.spawnZoneSize2)
+            };
         }
 
         private void Start() 
         {
             _eventManager.TriggerEvent(Constants.EventNames.GAME_STATE_CHANGED, new GameStateChangeArgs(_currentPlayerIndex, CurrentPhase));            
+        }
+
+        public bool TryGetPlayer(int index, out IPlayer player)
+        {
+            player = null;
+            
+            if(index > _players.Length || index < 0) return false;
+            
+            player = _players[index];
+            return true;
         }
 
         public void NextPhase()
@@ -107,7 +116,7 @@ namespace WarToolkit.Managers
 
             int prevPlayerIndex = _currentPlayerIndex;
 
-            if (_currentPlayerIndex + 1 >= _players.Count)
+            if (_currentPlayerIndex + 1 >= _players.Length)
             {
                 _currentPlayerIndex = 0;
             }
@@ -137,9 +146,9 @@ namespace WarToolkit.Managers
 
         private GameCompleteEventArgs CheckCombatVictory()
         {
-            var remainingTeams = new List<Player>();
-            var eliminatedTeams = new List<Player>();
-            for (int i = 0; i < _players.Count; i++)
+            var remainingTeams = new List<IPlayer>();
+            var eliminatedTeams = new List<IPlayer>();
+            for (int i = 0; i < _players.Length; i++)
             {
                 if (_players[i].IsEliminated)
                     eliminatedTeams.Add(_players[i]);
@@ -149,7 +158,7 @@ namespace WarToolkit.Managers
 
             if (remainingTeams.Count == 1)
                 return new GameCompleteEventArgs(VictoryType.DESTRUCTION, remainingTeams[0]);
-            else if (eliminatedTeams.Count == _players.Count)
+            else if (eliminatedTeams.Count == _players.Length)
                 return new GameCompleteEventArgs(VictoryType.MUTUAL_DESTRUCTION);
             else
                 return null;

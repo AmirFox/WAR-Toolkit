@@ -20,34 +20,33 @@ namespace WarToolkit.Core.EventArgs
         }
     }
 
-    public class UnitSelectedEventArgs : IArguements
+    public class TileSelectedEventArgs : IArguements
     {
-        public int OwningPlayerIndex { get; }
-        public Movable MovableComponent{ get; }
-        public Combatant CombatantComponent { get; }
-        public UnitSelectedEventArgs(int playerIndex, Movable movable, Combatant combatant)
+        public Vector2 position;
+        
+        public TileSelectedEventArgs(Vector2 position)
         {
-            MovableComponent = movable;
-            CombatantComponent = combatant;
-            OwningPlayerIndex = playerIndex;
+            this.position = position;
         }
     }
 
-    public class SelectionEventArgs<T> : IArguements
+    public class DeployableSelectedEventArgs : IArguements
     {
-        public T Selection { get; }
+        public int playerIndex { get; }
+        public int deployableIndex { get; }
 
-        public SelectionEventArgs(T selection)
+        public DeployableSelectedEventArgs(int playerIndex, int deployableIndex)
         {
-            Selection = selection;
+            this.playerIndex = playerIndex;
+            this.deployableIndex = deployableIndex;
         }
     }
 
     public class GameCompleteEventArgs : IArguements
     {
-        public Player? Winner;
+        public IPlayer? Winner;
         public VictoryType VictoryType;
-        public GameCompleteEventArgs(VictoryType victoryType, Player winner = null)
+        public GameCompleteEventArgs(VictoryType victoryType, IPlayer winner = null)
         {
             Winner = winner;
             VictoryType = victoryType;
