@@ -68,8 +68,8 @@ namespace WarToolkit.ObjectData
 
         private void ClearListeners() 
         {
-            _eventManager.StartListening(Constants.EventNames.TILE_SELECTED, OnDeploymentTileSelected);
-            _eventManager.StartListening(Constants.EventNames.DEPLOYABLE_SELECTED, OnDeployableSelected);
+            _eventManager.StopListening(Constants.EventNames.TILE_SELECTED, OnDeploymentTileSelected);
+            _eventManager.StopListening(Constants.EventNames.DEPLOYABLE_SELECTED, OnDeployableSelected);
         }
         
         private void OnDeploymentTileSelected(IArguements args)
@@ -90,7 +90,7 @@ namespace WarToolkit.ObjectData
         {
             if(args is DeployableSelectedEventArgs selectionArgs)
             {
-                Debug.Log($"DEPLOYABLE SELECTED: {selectionArgs.deployableIndex}");
+                Debug.Log($"[Player {this.PlayerIndex}] DEPLOYABLE SELECTED: {selectionArgs.deployableIndex}");
                 if(factionData.TryGetDeployable(selectionArgs.deployableIndex, out _selectedDeployable))
                 {
                 }
